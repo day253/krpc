@@ -1,4 +1,4 @@
-package registry_zookeeper
+package example
 
 import (
 	"context"
