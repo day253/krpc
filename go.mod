@@ -13,6 +13,7 @@ require (
 	github.com/spf13/viper v1.14.0
 	github.com/stretchr/testify v1.9.0
 	go.uber.org/multierr v1.9.0
+	go.uber.org/zap v1.21.0
 )
 
 require (
