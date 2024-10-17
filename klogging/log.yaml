@@ -1,0 +1,18 @@
+Dir: log
+Loggers:
+  - Name: default
+    Level: info
+    Buffered: true
+    MaxSize: 2048
+    MaxAge: 7
+    MaxBackups: 20
+    Outputs:
+      - File
+      - Console
+  - Name: error-default
+    Level: error
+    MaxSize: 2048
+    MaxAge: 7
+    MaxBackups: 20
+    Outputs:
+      - File
