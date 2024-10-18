@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/bytedance/sonic"
+	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/ishumei/krpc/boilerplate/pkg/conf"
 	"github.com/ishumei/krpc/boilerplate/pkg/global"
@@ -64,7 +64,7 @@ func (p *Predictor) Run(ctx context.Context, input ModelInput) (ModelResult, err
 		return nil, err
 	}
 	detail := make(map[string]interface{})
-	err = sonic.Unmarshal([]byte(resp.GetDetail()), &detail)
+	err = json.Unmarshal([]byte(resp.GetDetail()), &detail)
 	if err != nil {
 		klog.CtxErrorf(ctx, "%s: %v", p.name, err)
 		return nil, err

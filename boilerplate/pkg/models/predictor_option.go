@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	"github.com/bytedance/sonic"
+	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/retry"
@@ -81,7 +81,7 @@ func (m *PredictorOption) apply(p *Predictor) {
 
 func NewPredictorOption(path string, content []byte) (*PredictorOption, error) {
 	opt := &PredictorOption{}
-	if err := sonic.Unmarshal(content, opt); err != nil {
+	if err := json.Unmarshal(content, opt); err != nil {
 		return nil, err
 	}
 	opt.NodePath = path

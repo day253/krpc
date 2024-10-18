@@ -8,11 +8,12 @@ import (
 	"time"
 
 	"github.com/bytedance/gopkg/util/gopool"
-	"github.com/bytedance/sonic"
+	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/ishumei/krpc/kclient"
 	_ "github.com/ishumei/krpc/kserver/governance"
 	"github.com/ishumei/krpc/kserver/sconfig"
+	"github.com/ishumei/krpc/logging"
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
@@ -34,6 +35,13 @@ var (
 type mirrorClients []predictor.Client
 
 func (s *mirrorClients) mirror(ctx context.Context, request *service.PredictRequest) []*service.PredictResult_ {
+	ctx = logging.WithOrganization(
+		logging.WithRequestId(
+			ctx,
+			request.GetRequestId(),
+		),
+		request.GetOrganization(),
+	)
 	p := pool.NewWithResults[*service.PredictResult_]()
 	for _, client := range *s {
 		client := client
@@ -51,7 +59,7 @@ func (s *mirrorClients) mirror(ctx context.Context, request *service.PredictRequ
 
 func unmarshalMap(source []byte) map[string]interface{} {
 	res := make(map[string]interface{})
-	_ = sonic.Unmarshal(source, &res)
+	_ = json.Unmarshal(source, &res)
 	return res
 }
 

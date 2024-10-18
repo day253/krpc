@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/bytedance/gopkg/util/gopool"
-	"github.com/bytedance/sonic"
+	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
 	_ "github.com/ishumei/krpc/autolimit"
 	"github.com/ishumei/krpc/conf"
@@ -76,7 +76,7 @@ func main() {
 	if err != nil {
 		klog.Error("Read request file error:", err)
 	}
-	if err := sonic.Unmarshal(bs, r); err != nil {
+	if err := json.Unmarshal(bs, r); err != nil {
 		klog.Error("Unmarshal request file error:", err)
 	}
 	rl := ratelimit.New(*qps)
