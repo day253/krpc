@@ -22,4 +22,4 @@ jobs:
         go-version: '1.19'
 
     - name: Test
-      run: make build-in-docker
+      run: make check-tools && make build-in-docker
