@@ -12,6 +12,9 @@ all: prepare compile test package
 .PHONY: build-in-docker
 build-in-docker: prepare compile package
 
+.PHONY: action
+action: prepare compile
+
 .PHONY: prepare
 prepare: prepare-dep
 
