@@ -1,9 +1,8 @@
 package autolimit
 
 import (
-	"log"
-
 	"github.com/KimMachineGun/automemlimit/memlimit"
+	"github.com/cloudwego/kitex/pkg/klog"
 	"go.uber.org/automaxprocs/maxprocs"
 )
 
@@ -12,5 +11,5 @@ func init() {
 }
 
 func init() {
-	_, _ = maxprocs.Set(maxprocs.Logger(log.Printf))
+	_, _ = maxprocs.Set(maxprocs.Logger(klog.Infof))
 }
