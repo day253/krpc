@@ -21,27 +21,27 @@ var (
 // You can use Map functionality on any map[string]interface{} using the following
 // format:
 //
-//     data := map[string]interface{}{"name": "Stew"}
-//     objects.Map(data).Get("name")
-//     // returns "Stew"
+//	data := map[string]interface{}{"name": "Stew"}
+//	objects.Map(data).Get("name")
+//	// returns "Stew"
 type Map map[string]interface{}
 
 // NewMap creates a new map.  You may also use the M shortcut method.
 //
 // The arguments follow a key, value pattern.
 //
-// Panics
+// # Panics
 //
 // Panics if any key arugment is non-string or if there are an odd number of arguments.
 //
-// Example
+// # Example
 //
 // To easily create Maps:
 //
-//     m := objects.M("name", "Mat", "age", 29, "subobj", objects.M("active", true))
+//	m := objects.M("name", "Mat", "age", 29, "subobj", objects.M("active", true))
 //
-//     // creates a Map equivalent to
-//     m := map[string]interface{}{"name": "Mat", "age": 29, "subobj": map[string]interface{}{"active": true}}
+//	// creates a Map equivalent to
+//	m := map[string]interface{}{"name": "Mat", "age": 29, "subobj": map[string]interface{}{"active": true}}
 func NewMap(keyAndValuePairs ...interface{}) Map {
 	newMap := make(Map)
 	keyAndValuePairsLen := len(keyAndValuePairs)
@@ -79,10 +79,10 @@ func NewMapFromJSON(data string) (Map, error) {
 // Get gets the value from the map.  Supports deep nesting of other maps,
 // For example:
 //
-//     m = Map{"name":Map{"First": "Mat", "Last": "Ryer"}}
+//	m = Map{"name":Map{"First": "Mat", "Last": "Ryer"}}
 //
-//     m.Get("name.Last")
-//     // returns "Ryer"
+//	m.Get("name.Last")
+//	// returns "Ryer"
 func (d Map) Get(keypath string) interface{} {
 	var segs []string = strings.Split(keypath, PathSeparator)
 	return d.GetBySegs(segs)
@@ -149,7 +149,7 @@ func (d Map) GetStringOrEmpty(keypath string) string {
 //
 // For example,
 //
-//     m.Set("name.first", "Mat")
+//	m.Set("name.first", "Mat")
 //
 // The above code sets the 'first' field on the 'name' object in the m Map.
 //
@@ -237,9 +237,10 @@ func (d Map) MergeHere(merge Map) Map {
 // Has gets whether the Map has the specified field or not. Supports deep nesting of other maps.
 //
 // For example:
-//     m := map[string]interface{}{"parent": map[string]interface{}{"childname": "Luke"}}
-//     m.Has("parent.childname")
-//     // return true
+//
+//	m := map[string]interface{}{"parent": map[string]interface{}{"childname": "Luke"}}
+//	m.Has("parent.childname")
+//	// return true
 func (d Map) Has(path string) bool {
 	return d.Get(path) != nil
 }
