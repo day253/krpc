@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="text"
+RUN_NAME="protocols/text"
 
 mkdir -p output/bin
 cp script/* output/

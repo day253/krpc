@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="arbiter"
+RUN_NAME="protocols/arbiter"
 
 mkdir -p output/bin
 cp script/* output/

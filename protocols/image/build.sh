@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="image"
+RUN_NAME="protocols/image"
 
 mkdir -p output/bin
 cp script/* output/

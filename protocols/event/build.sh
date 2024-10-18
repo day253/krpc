@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="event"
+RUN_NAME="protocols/event"
 
 mkdir -p output/bin
 cp script/* output/

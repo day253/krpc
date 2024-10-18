@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-RUN_NAME="audio"
+RUN_NAME="protocols/audio"
 
 mkdir -p output/bin
 cp script/* output/
