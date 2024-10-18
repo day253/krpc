@@ -1,0 +1,29 @@
+Resolver:
+  Metabase: "127.0.0.1:2181"
+  TimeoutMs: 30000
+Models:
+  arbiter:
+    ServiceName: '/{{env "ENV_ROLE"}}/arbiter-engine/ae-event'
+    TimeoutMs: 250
+    Retries: 1
+    Type: arbiter
+  re-audio:
+    ServiceName: "/request-engine/re-audio"
+    TimeoutMs: 250
+    Retries: 1
+    Type: re-audio
+  re-event:
+    ServiceName: "/request-engine/re-event"
+    TimeoutMs: 250
+    Retries: 1
+    Type: re-event
+  re-image:
+    ServiceName: "/request-engine/re-image"
+    TimeoutMs: 250
+    Retries: 1
+    Type: re-image
+  re-text:
+    ServiceName: "/request-engine/re-text"
+    TimeoutMs: 250
+    Retries: 1
+    Type: re-text

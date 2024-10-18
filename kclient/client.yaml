@@ -1,0 +1,13 @@
+Resolver:
+  Metabase: "127.0.0.1:2181"
+  TimeoutMs: 50000
+ServiceName: "/request-engine/re-audio"
+LongConnection:
+  Enabled: false
+  MinIdlePerAddress: 10000
+  MaxIdlePerAddress: 20000
+  MaxIdleGlobal: 1000000
+  MaxIdleTimeout: 10000000000
+OpenTelemetry:
+  Enabled: false
+  Address: ":4317"
