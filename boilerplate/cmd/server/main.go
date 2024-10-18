@@ -5,8 +5,8 @@ import (
 
 	_ "github.com/ishumei/krpc/autolimit"
 	"github.com/ishumei/krpc/boilerplate/internal/handler"
-	"github.com/ishumei/krpc/frame/arbiter"
-	"github.com/ishumei/krpc/frame/sconfig"
+	"github.com/ishumei/krpc/kframe/arbiter"
+	"github.com/ishumei/krpc/kframe/sconfig"
 	"github.com/samber/do"
 )
 
