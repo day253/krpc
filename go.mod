@@ -12,7 +12,7 @@ require (
 	github.com/bytedance/sonic v1.12.2
 	github.com/cloudwego/kitex v0.11.3
 	github.com/creasty/defaults v1.6.0
-	github.com/go-zookeeper/zk v1.0.3
+	github.com/go-zookeeper/zk v1.0.4
 	github.com/ishumei/lumberjack v0.0.0-20241017112125-0307cf67c51c
 	github.com/jncornett/doublebuf v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.1.0
