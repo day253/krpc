@@ -1,4 +1,6 @@
 post-compile: compile-proto golangci-lint-fix
+	$(GO) build -o $(BINDIR)/boilerplate $(HOMEDIR)/boilerplate/cmd/server/*.go
+	$(GO) build -o $(BINDIR)/press $(HOMEDIR)/boilerplate/cmd/press/*.go
 
 compile-proto: proto
 	@for idl in \
@@ -15,5 +17,9 @@ compile-proto: proto
 		kitex -module github.com/ishumei/krpc -service $$idl prediction.thrift && \
 		cd -; \
 	done
+
+package-bin:
+	mkdir -p $(OUTDIR)
+	cp -rf $(HOMEDIR)/boilerplate/dist/* $(OUTDIR)
 
 include Makefile.mk

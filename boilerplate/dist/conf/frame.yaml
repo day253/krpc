@@ -1,0 +1,27 @@
+Port: 9991
+ServiceName: '/{{env "ENV_ROLE"}}/models/boilerplate'
+Registry:
+  Enabled: true
+  TimeoutMs: 50000
+Http:
+  Enabled: true
+Log:
+  Dir: log
+  FunctionKey: func
+  Loggers:
+    - Name: boilerplate
+      Level: debug
+      # Buffered: true
+      MaxSize: 256
+      MaxAge: 1
+      MaxBackups: 2
+      Outputs:
+        - File
+        - Console
+    - Name: error-boilerplate
+      Level: error
+      MaxSize: 256
+      MaxAge: 1
+      MaxBackups: 1
+      Outputs:
+        - File

@@ -8,24 +8,29 @@ require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/alibaba/sentinel-golang/pkg/adapters/kitex v0.0.0-20221011112204-0d804bbadda5
 	github.com/apache/thrift v0.13.0
+	github.com/bytedance/gopkg v0.0.0-20220817015305-b879a72dc90f
 	github.com/bytedance/sonic v1.11.3
 	github.com/cloudwego/kitex v0.5.2
 	github.com/creasty/defaults v1.6.0
 	github.com/go-zookeeper/zk v1.0.3
 	github.com/ishumei/lumberjack v0.0.0-20241017112125-0307cf67c51c
+	github.com/jncornett/doublebuf v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.1.0
 	github.com/mitchellh/mapstructure v1.5.0
 	github.com/prometheus/client_golang v1.12.2
 	github.com/samber/do v1.4.1
 	github.com/samber/lo v1.39.0
+	github.com/sourcegraph/conc v0.3.0
 	github.com/spf13/viper v1.14.0
 	github.com/stretchr/testify v1.9.0
+	github.com/wI2L/jsondiff v0.6.0
 	go.opentelemetry.io/otel v1.11.0
 	go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.11.0
 	go.opentelemetry.io/otel/sdk v1.11.0
 	go.opentelemetry.io/otel/trace v1.11.0
 	go.uber.org/automaxprocs v1.5.3
 	go.uber.org/multierr v1.10.0
+	go.uber.org/ratelimit v0.3.1
 	go.uber.org/zap v1.27.0
 )
 
@@ -33,8 +38,8 @@ require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.1.1 // indirect
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/bytedance/gopkg v0.0.0-20220817015305-b879a72dc90f // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
@@ -87,9 +92,10 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.4.1 // indirect
-	github.com/tidwall/gjson v1.9.3 // indirect
+	github.com/tidwall/gjson v1.17.1 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
-	github.com/tidwall/pretty v1.2.0 // indirect
+	github.com/tidwall/pretty v1.2.1 // indirect
+	github.com/tidwall/sjson v1.2.5 // indirect
 	github.com/tklauser/go-sysconf v0.3.6 // indirect
 	github.com/tklauser/numcpus v0.2.2 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
