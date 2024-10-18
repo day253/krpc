@@ -13,7 +13,10 @@ require (
 	github.com/cloudwego/kitex v0.11.3
 	github.com/creasty/defaults v1.8.0
 	github.com/go-zookeeper/zk v1.0.4
+	github.com/huandu/go-clone v1.7.2
+	github.com/ishumei/dag v0.0.0-20241018081312-9f658ddc8807
 	github.com/ishumei/lumberjack v0.0.0-20241017112125-0307cf67c51c
+	github.com/jinzhu/copier v0.4.0
 	github.com/jncornett/doublebuf v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.2.3
 	github.com/mitchellh/mapstructure v1.5.0
@@ -60,6 +63,7 @@ require (
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/docker/go-units v0.4.0 // indirect
+	github.com/emirpasic/gods v1.18.1 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-logr/logr v1.2.4 // indirect
