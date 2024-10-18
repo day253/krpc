@@ -1,4 +1,4 @@
-post-compile: compile-proto golangci-lint-fix
+post-compile: compile-proto
 	$(GO) build -o $(BINDIR)/boilerplate $(HOMEDIR)/boilerplate/cmd/server/*.go
 	$(GO) build -o $(BINDIR)/press $(HOMEDIR)/boilerplate/cmd/press/*.go
 
