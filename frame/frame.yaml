@@ -1,0 +1,55 @@
+Addr: 
+Port: 8000
+ServiceName: "/request-engine/re-audio"
+Registry:
+  Enabled: true
+  Metabase: "127.0.0.1:2181"
+  TimeoutMs: 5000
+  User:
+  Password:
+Http:
+  Enabled: false
+  # Port 默认就是rpc port+1
+  Port: 8001
+OpenTelemetry:
+  Enabled: true
+  Address: ":4317"
+Sentinel:
+  Enabled: true
+  SystemRules:
+    # 自适应流控，启发因子为 load1 >= 8
+    - MetricType: 0 # system.Load
+      TriggerCount: 48.0 # set this value, overwrite
+      Strategy: 1 # system.BBR
+      TriggerCountFactor: 3.0 # trigger count factor * cpu cores num = trigger count
+    # - MetricType: 1 # system.AvgRT
+    #   TriggerCount: 1000
+    #   Strategy: 1 # system.BBR
+    # - MetricType: 2 # system.Concurrency
+    #   TriggerCount: 8.0
+    #   Strategy: 1 # system.BBR
+    # - MetricType: 3 # system.InboundQPS
+    #   TriggerCount: 8.0
+    #   Strategy: 1 # system.BBR
+    - MetricType: 4 # system.CpuUsage
+      TriggerCount: 0.8
+      Strategy: 1 # system.BBR
+Log:
+  Dir: log
+  Loggers:
+    - Name: default
+      Level: info
+      Buffered: true
+      MaxSize: 2048
+      MaxAge: 7
+      MaxBackups: 20
+      Outputs:
+        - File
+        - Console
+    - Name: error-default
+      Level: error
+      MaxSize: 2048
+      MaxAge: 7
+      MaxBackups: 20
+      Outputs:
+        - File
