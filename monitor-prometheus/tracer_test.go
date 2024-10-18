@@ -1,7 +1,7 @@
 package monitor_prometheus
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -55,7 +55,7 @@ func TestPrometheusReporter(t *testing.T) {
 	}
 	assert.True(t, promServerResp.StatusCode == http.StatusOK)
 
-	bodyBytes, err := ioutil.ReadAll(promServerResp.Body)
+	bodyBytes, err := io.ReadAll(promServerResp.Body)
 	assert.True(t, err == nil)
 	respStr := string(bodyBytes)
 	assert.True(t, strings.Contains(respStr, `test_counter{service="prometheus-test",test1="abc",test2="def"} 6`))
