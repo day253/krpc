@@ -23,7 +23,7 @@ prepare-dep:
 set-env:
 	$(GO) env -w GO111MODULE=on
 	$(GO) env -w CGO_ENABLED=1
-	$(GO) env -w GOPROXY=https://proxy.golang.com.cn,direct
+	# $(GO) env -w GOPROXY=https://proxy.golang.com.cn,direct
 	$(GO) env -w GONOSUMDB=\*
 	$(GO) env -w GOPRIVATE=code.aliyun.com
 
