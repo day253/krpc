@@ -1,4 +1,4 @@
-package kbuffer
+package bufferpool
 
 import (
 	"bytes"

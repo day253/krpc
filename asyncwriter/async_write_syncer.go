@@ -7,14 +7,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ishumei/krpc/kbuffer"
+	"github.com/ishumei/krpc/bufferpool"
 	"go.uber.org/zap/zapcore"
 )
 
 type AsyncWriterSyncer struct {
 	ws      zapcore.WriteSyncer
 	wg      sync.WaitGroup
-	pool    *kbuffer.BytesBufferPool
+	pool    *bufferpool.BytesBufferPool
 	bufChan chan *bytes.Buffer
 	cancel  context.CancelFunc
 }
@@ -118,7 +118,7 @@ func NewAsyncBufferWriteSyncer(ws zapcore.WriteSyncer, bufferSize int, asyncBuff
 	ctx, cancel := context.WithCancel(context.Background())
 	l := &AsyncWriterSyncer{
 		ws:      newBufferWriterSyncer(ws, bufferSize),
-		pool:    kbuffer.NewBytesBufferPool(1024),
+		pool:    bufferpool.NewBytesBufferPool(1024),
 		bufChan: make(chan *bytes.Buffer, asyncBufferSize),
 		cancel:  cancel,
 	}
