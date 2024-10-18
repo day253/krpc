@@ -12,7 +12,7 @@ import (
 	_ "github.com/ishumei/krpc/autolimit"
 	"github.com/ishumei/krpc/kclient"
 	"github.com/ishumei/krpc/kconf"
-	"github.com/ishumei/krpc/kframe/sconfig"
+	"github.com/ishumei/krpc/kserver/sconfig"
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
