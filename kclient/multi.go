@@ -3,7 +3,7 @@ package kclient
 import (
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/kconf"
+	"github.com/ishumei/krpc/conf"
 	"github.com/ishumei/krpc/logging"
 	"github.com/ishumei/krpc/objects"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
@@ -19,7 +19,7 @@ type MultiClientConf struct {
 
 func MustNewMultiClientConf(path, file, suffix string) {
 	c := &MultiClientConf{}
-	kconf.MustLoadConf(c, path, file, suffix)
+	conf.MustLoadConf(c, path, file, suffix)
 	klog.Info("load: ", objects.String(c))
 	InjectClientFromMultiClientConf(c)
 }

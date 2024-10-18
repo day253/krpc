@@ -10,8 +10,8 @@ import (
 	"github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
 	_ "github.com/ishumei/krpc/autolimit"
+	"github.com/ishumei/krpc/conf"
 	"github.com/ishumei/krpc/kclient"
-	"github.com/ishumei/krpc/kconf"
 	"github.com/ishumei/krpc/kserver/sconfig"
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
@@ -35,7 +35,7 @@ func main() {
 	})
 	client := kclient.MustNewArbiterClient(func() *kclient.SingleClientConf {
 		c := &sconfig.FrameConfig{}
-		err := kconf.LoadDefaultConf(c, "frame", "overwrite.yaml")
+		err := conf.LoadDefaultConf(c, "frame", "overwrite.yaml")
 		klog.Info(objects.String(c))
 		return &kclient.SingleClientConf{
 			ResolverConf: kclient.ResolverConf{

@@ -1,4 +1,4 @@
-package kconf
+package conf
 
 import (
 	"github.com/cloudwego/kitex/pkg/klog"

@@ -2,7 +2,7 @@ package kclient
 
 import (
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/kconf"
+	"github.com/ishumei/krpc/conf"
 	"github.com/ishumei/krpc/objects"
 	"github.com/samber/do"
 )
@@ -15,7 +15,7 @@ type SingleClientConf struct {
 
 func MustNewSingleClientConf(path, file, suffix string) {
 	c := &SingleClientConf{}
-	kconf.MustLoadConf(c, path, file, suffix)
+	conf.MustLoadConf(c, path, file, suffix)
 	klog.Info("load: ", objects.String(c))
 	InjectClientFromSingleClientConf(c)
 }

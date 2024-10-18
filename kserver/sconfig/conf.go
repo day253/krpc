@@ -7,7 +7,7 @@ import (
 	"github.com/alibaba/sentinel-golang/core/system"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/creasty/defaults"
-	"github.com/ishumei/krpc/kconf"
+	"github.com/ishumei/krpc/conf"
 	"github.com/ishumei/krpc/logging"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	"github.com/samber/do"
@@ -93,7 +93,7 @@ func NewFrameConfig(i *do.Injector) (*FrameConfig, error) {
 	if err != nil {
 		return nil, err
 	}
-	err = kconf.LoadDefaultConf(frameConfig, "frame", "overwrite")
+	err = conf.LoadDefaultConf(frameConfig, "frame", "overwrite")
 	if err != nil {
 		return nil, err
 	}
