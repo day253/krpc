@@ -13,7 +13,7 @@ import (
 	_ "github.com/ishumei/krpc/frame/governance"
 	"github.com/ishumei/krpc/frame/grace"
 	"github.com/ishumei/krpc/frame/sconfig"
-	prometheus "github.com/ishumei/krpc/monitor-prometheus"
+	monitor_prometheus "github.com/ishumei/krpc/monitor-prometheus"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	"github.com/samber/do"
 	"github.com/samber/lo"
@@ -35,7 +35,7 @@ func NewServerOptions(i *do.Injector) (*ServerOptions, error) {
 	options := []server.Option{
 		server.WithServiceAddr(addr),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: c.ServiceName}),
-		server.WithTracer(prometheus.NewServerTracerWithoutExport()),
+		server.WithTracer(monitor_prometheus.NewServerTracerWithoutExport()),
 		server.WithExitSignal(grace.DefaultUserExitSignal),
 	}
 

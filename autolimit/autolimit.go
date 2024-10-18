@@ -1,4 +1,4 @@
-package automemlimit
+package autolimit
 
 import (
 	"log"
