@@ -1,4 +1,4 @@
-package klogging
+package logging
 
 import "github.com/samber/do"
 

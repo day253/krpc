@@ -5,10 +5,10 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/klogging"
 	"github.com/ishumei/krpc/kserver/debug"
 	"github.com/ishumei/krpc/kserver/grace"
 	"github.com/ishumei/krpc/kserver/sconfig"
+	"github.com/ishumei/krpc/logging"
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 	"github.com/samber/do"
 )
@@ -16,7 +16,7 @@ import (
 type Kservice struct {
 	provider   provider.OtelProvider
 	server     server.Server
-	logger     *klogging.Logger
+	logger     *logging.Logger
 	httpServer *debug.HttpServer
 	exitSignal func()
 }
@@ -59,7 +59,7 @@ func MustNewKservice(i *do.Injector, server server.Server) *Kservice {
 		)
 	}
 
-	logger := do.MustInvoke[*klogging.Logger](klogging.Injector)
+	logger := do.MustInvoke[*logging.Logger](logging.Injector)
 
 	var httpServer *debug.HttpServer
 	if c.Http.Enabled {

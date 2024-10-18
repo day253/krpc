@@ -8,7 +8,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/creasty/defaults"
 	"github.com/ishumei/krpc/kconf"
-	"github.com/ishumei/krpc/klogging"
+	"github.com/ishumei/krpc/logging"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	"github.com/samber/do"
 )
@@ -72,7 +72,7 @@ type FrameConfig struct {
 	OpenTelemetry OpenTelemetry
 	Sentinel      Sentinel
 	Overload      Overload
-	Log           klogging.LogConfig
+	Log           logging.LogConfig
 }
 
 func (c FrameConfig) Address() string {
@@ -105,8 +105,8 @@ func NewFrameConfigWithLogger(i *do.Injector) (*FrameConfig, error) {
 	if err != nil {
 		return nil, err
 	}
-	do.ProvideValue(klogging.Injector, frameConfig.Log)
-	logger, err := do.Invoke[*klogging.Logger](klogging.Injector)
+	do.ProvideValue(logging.Injector, frameConfig.Log)
+	logger, err := do.Invoke[*logging.Logger](logging.Injector)
 	if err != nil {
 		return nil, err
 	}

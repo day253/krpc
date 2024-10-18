@@ -4,7 +4,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/ishumei/krpc/kconf"
-	"github.com/ishumei/krpc/klogging"
+	"github.com/ishumei/krpc/logging"
 	"github.com/ishumei/krpc/objects"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	"github.com/ishumei/krpc/registry-zookeeper/resolver"
@@ -26,7 +26,7 @@ func MustNewMultiClientConf(path, file, suffix string) {
 
 func InjectClientFromMultiClientConf(c *MultiClientConf) {
 	do.Override(Injector, func(i *do.Injector) (discovery.Resolver, error) {
-		logger, err := do.Invoke[*klogging.Logger](klogging.Injector)
+		logger, err := do.Invoke[*logging.Logger](logging.Injector)
 		if err == nil {
 			return resolver.NewZookeeperResolverWithConf(
 				c.ResolverConf.Resolver,

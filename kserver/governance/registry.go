@@ -2,8 +2,8 @@ package governance
 
 import (
 	"github.com/cloudwego/kitex/pkg/registry"
-	"github.com/ishumei/krpc/klogging"
 	"github.com/ishumei/krpc/kserver/sconfig"
+	"github.com/ishumei/krpc/logging"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	zkregistry "github.com/ishumei/krpc/registry-zookeeper/registry"
 	"github.com/samber/do"
@@ -13,7 +13,7 @@ func init() {
 	do.Provide(sconfig.Injector, func(i *do.Injector) (*zkregistry.ZookeeperRegistry, error) {
 		f := do.MustInvoke[*sconfig.FrameConfig](sconfig.Injector)
 		c := f.Registry
-		logger := do.MustInvoke[*klogging.Logger](klogging.Injector)
+		logger := do.MustInvoke[*logging.Logger](logging.Injector)
 		return zkregistry.NewZookeeperRegistryWithConf(
 			c,
 			f.Addr,
