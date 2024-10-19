@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/KimMachineGun/automemlimit v0.4.0
 	github.com/Masterminds/sprig/v3 v3.3.0
-	github.com/alibaba/sentinel-golang v1.0.4
+	github.com/alibaba/sentinel-golang v1.0.5-0.20241014064434-f13247da595a
 	github.com/alibaba/sentinel-golang/pkg/adapters/kitex v0.0.0-20241014064434-f13247da595a
 	github.com/bytedance/gopkg v0.1.1
 	github.com/bytedance/sonic v1.12.3
