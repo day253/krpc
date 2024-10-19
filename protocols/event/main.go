@@ -1,8 +1,9 @@
 package main
 
 import (
-	re "github.com/ishumei/krpc/protocols/event/kitex_gen/shumei/strategy/re/eventpredictor"
 	"log"
+
+	re "github.com/ishumei/krpc/protocols/event/kitex_gen/shumei/strategy/re/eventpredictor"
 )
 
 func main() {

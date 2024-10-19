@@ -3,17 +3,13 @@ OUTDIR := $(HOMEDIR)/build
 BINDIR := $(OUTDIR)/bin
 GO := go
 GOPATH := $(shell $(GO) env GOPATH)
-
 GOBIN := $(GOPATH)/bin
 
 .PHONY: all
-all: prepare compile test package
+all: prepare compile check test package
 
-.PHONY: build-in-docker
-build-in-docker: prepare compile package
-
-.PHONY: action
-action: prepare compile
+.PHONY: build
+build: prepare compile check package
 
 .PHONY: prepare
 prepare: prepare-dep
@@ -77,7 +73,10 @@ coverage: set-env
 	$(GO) tool cover -html=coverage.cov -o coverage.html
 
 .PHONY: check
-check: golangci-lint
+check: check-tools golangci-lint
+
+.PHONY: fix
+fix: check-tools golangci-lint-fix
 
 check-tools: set-env
 	$(GO) install -v "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.54.1"
