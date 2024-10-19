@@ -1,4 +1,4 @@
-package ssuite
+package kserver
 
 import (
 	"net"
@@ -10,9 +10,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	_ "github.com/ishumei/krpc/autolimit"
-	_ "github.com/ishumei/krpc/kserver/governance"
-	"github.com/ishumei/krpc/kserver/grace"
-	"github.com/ishumei/krpc/kserver/sconfig"
 	monitor_prometheus "github.com/ishumei/krpc/monitor-prometheus"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	"github.com/samber/do"
@@ -28,7 +25,7 @@ func (s *ServerOptions) Options() []server.Option {
 }
 
 func NewServerOptions(i *do.Injector) (*ServerOptions, error) {
-	c := do.MustInvoke[*sconfig.FrameConfig](sconfig.Injector)
+	c := do.MustInvoke[*FrameConfig](Injector)
 
 	addr, _ := net.ResolveTCPAddr("tcp", c.Address())
 
@@ -36,11 +33,11 @@ func NewServerOptions(i *do.Injector) (*ServerOptions, error) {
 		server.WithServiceAddr(addr),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: c.ServiceName}),
 		server.WithTracer(monitor_prometheus.NewServerTracerWithoutExport()),
-		server.WithExitSignal(grace.DefaultUserExitSignal),
+		server.WithExitSignal(DefaultUserExitSignal),
 	}
 
 	if c.Registry.Enabled {
-		iRegistry := do.MustInvoke[registry.Registry](sconfig.Injector)
+		iRegistry := do.MustInvoke[registry.Registry](Injector)
 		options = append(
 			options,
 			server.WithRegistry(iRegistry),
@@ -68,5 +65,5 @@ func NewServerOptions(i *do.Injector) (*ServerOptions, error) {
 }
 
 func init() {
-	do.Provide(sconfig.Injector, NewServerOptions)
+	do.Provide(Injector, NewServerOptions)
 }

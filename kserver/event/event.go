@@ -2,28 +2,26 @@ package event
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/kserver/kservice"
-	"github.com/ishumei/krpc/kserver/sconfig"
-	"github.com/ishumei/krpc/kserver/ssuite"
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/protocols/event/kitex_gen/shumei/strategy/re"
 	"github.com/ishumei/krpc/protocols/event/kitex_gen/shumei/strategy/re/eventpredictor"
 	"github.com/samber/do"
 )
 
 type EventService struct {
-	*kservice.Kservice
+	*kserver.Kservice
 }
 
 func NewEventService(i *do.Injector) (*EventService, error) {
-	opts := do.MustInvoke[*ssuite.ServerOptions](sconfig.Injector)
+	opts := do.MustInvoke[*kserver.ServerOptions](kserver.Injector)
 
-	predictor := do.MustInvoke[re.EventPredictor](sconfig.Injector)
+	predictor := do.MustInvoke[re.EventPredictor](kserver.Injector)
 
 	return &EventService{
-		Kservice: kservice.MustNewKservice(i, eventpredictor.NewServer(predictor, server.WithSuite(opts))),
+		Kservice: kserver.MustNewKservice(i, eventpredictor.NewServer(predictor, server.WithSuite(opts))),
 	}, nil
 }
 
 func init() {
-	do.Provide(sconfig.Injector, NewEventService)
+	do.Provide(kserver.Injector, NewEventService)
 }

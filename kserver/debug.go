@@ -1,4 +1,4 @@
-package debug
+package kserver
 
 import (
 	"net/http"

@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/kserver/event"
-	"github.com/ishumei/krpc/kserver/sconfig"
 	re "github.com/ishumei/krpc/protocols/event/kitex_gen/shumei/strategy/re"
 	"github.com/samber/do"
 )
@@ -22,7 +22,7 @@ func (s *predictorImpl) Health(ctx context.Context) (resp bool, err error) {
 
 func main() {
 	os.Setenv("ENV_ROLE", "test")
-	injector := sconfig.Injector
+	injector := kserver.Injector
 	eventService := do.MustInvoke[*event.EventService](injector)
 	defer func() { _ = eventService.Shutdown() }()
 	defer func() { _ = injector.Shutdown() }()
@@ -30,7 +30,7 @@ func main() {
 }
 
 func init() {
-	do.Provide(sconfig.Injector, func(i *do.Injector) (re.EventPredictor, error) {
+	do.Provide(kserver.Injector, func(i *do.Injector) (re.EventPredictor, error) {
 		return new(predictorImpl), nil
 	})
 }

@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/kserver/audio"
-	"github.com/ishumei/krpc/kserver/sconfig"
 	re "github.com/ishumei/krpc/protocols/audio/kitex_gen/shumei/strategy/re"
 	"github.com/samber/do"
 )
@@ -22,7 +22,7 @@ func (s *predictorImpl) Health(ctx context.Context) (resp bool, err error) {
 
 func main() {
 	os.Setenv("ENV_ROLE", "test")
-	injector := sconfig.Injector
+	injector := kserver.Injector
 	audioService := do.MustInvoke[*audio.AudioService](injector)
 	defer func() { _ = audioService.Shutdown() }()
 	defer func() { _ = injector.Shutdown() }()
@@ -30,7 +30,7 @@ func main() {
 }
 
 func init() {
-	do.Provide(sconfig.Injector, func(i *do.Injector) (re.AudioPredictor, error) {
+	do.Provide(kserver.Injector, func(i *do.Injector) (re.AudioPredictor, error) {
 		return new(predictorImpl), nil
 	})
 }

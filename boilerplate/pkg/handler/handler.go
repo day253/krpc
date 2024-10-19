@@ -11,8 +11,7 @@ import (
 	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/ishumei/krpc/kclient"
-	_ "github.com/ishumei/krpc/kserver/governance"
-	"github.com/ishumei/krpc/kserver/sconfig"
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/logging"
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
@@ -108,8 +107,8 @@ func (s *mirrorClients) Predict(ctx context.Context, request *service.PredictReq
 }
 
 func MustNew() *mirrorClients {
-	zkConn := do.MustInvoke[*registry_zookeeper.ZookeeperRegistry](sconfig.Injector)
-	sConf := do.MustInvoke[*sconfig.FrameConfig](sconfig.Injector)
+	zkConn := do.MustInvoke[*registry_zookeeper.ZookeeperRegistry](kserver.Injector)
+	sConf := do.MustInvoke[*kserver.FrameConfig](kserver.Injector)
 	childNodes, _, err := zkConn.Children(sConf.ServiceName)
 	lo.Must0(err)
 	localIp, err := registry_zookeeper.GetLocalIp("")
@@ -182,7 +181,7 @@ func BackgroundTask() {
 }
 
 func init() {
-	do.Provide(sconfig.Injector, func(i *do.Injector) (service.Predictor, error) {
+	do.Provide(kserver.Injector, func(i *do.Injector) (service.Predictor, error) {
 		return new(ArbiterPredictorImpl), nil
 	})
 	clientsCache = doublebuf.New(MustNew(), MustNew())

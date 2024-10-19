@@ -1,13 +1,10 @@
-package kservice
+package kserver
 
 import (
 	"context"
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/kserver/debug"
-	"github.com/ishumei/krpc/kserver/grace"
-	"github.com/ishumei/krpc/kserver/sconfig"
 	"github.com/ishumei/krpc/logging"
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 	"github.com/samber/do"
@@ -17,7 +14,7 @@ type Kservice struct {
 	provider   provider.OtelProvider
 	server     server.Server
 	logger     *logging.Logger
-	httpServer *debug.HttpServer
+	httpServer *HttpServer
 	exitSignal func()
 }
 
@@ -49,7 +46,7 @@ func (c *Kservice) Shutdown() error {
 func MustNewKservice(i *do.Injector, server server.Server) *Kservice {
 	var otelprovider provider.OtelProvider
 
-	c := do.MustInvoke[*sconfig.FrameConfig](sconfig.Injector)
+	c := do.MustInvoke[*FrameConfig](Injector)
 
 	if c.OpenTelemetry.Enabled {
 		otelprovider = provider.NewOpenTelemetryProvider(
@@ -61,9 +58,9 @@ func MustNewKservice(i *do.Injector, server server.Server) *Kservice {
 
 	logger := do.MustInvoke[*logging.Logger](logging.Injector)
 
-	var httpServer *debug.HttpServer
+	var httpServer *HttpServer
 	if c.Http.Enabled {
-		httpServer = debug.NewHttpServer(c.HttpAddress())
+		httpServer = NewHttpServer(c.HttpAddress())
 	}
 
 	return &Kservice{
@@ -71,6 +68,6 @@ func MustNewKservice(i *do.Injector, server server.Server) *Kservice {
 		server:     server,
 		logger:     logger,
 		httpServer: httpServer,
-		exitSignal: grace.DefaultDeregisterSignal,
+		exitSignal: DefaultDeregisterSignal,
 	}
 }

@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/kserver/arbiter"
-	"github.com/ishumei/krpc/kserver/sconfig"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	"github.com/samber/do"
 )
@@ -22,7 +22,7 @@ func (s *predictorImpl) Health(ctx context.Context) (resp bool, err error) {
 
 func main() {
 	os.Setenv("ENV_ROLE", "test")
-	injector := sconfig.Injector
+	injector := kserver.Injector
 	arbiterService := do.MustInvoke[*arbiter.ArbiterService](injector)
 	defer func() { _ = arbiterService.Shutdown() }()
 	defer func() { _ = injector.Shutdown() }()
@@ -30,7 +30,7 @@ func main() {
 }
 
 func init() {
-	do.Provide(sconfig.Injector, func(i *do.Injector) (service.Predictor, error) {
+	do.Provide(kserver.Injector, func(i *do.Injector) (service.Predictor, error) {
 		return new(predictorImpl), nil
 	})
 }

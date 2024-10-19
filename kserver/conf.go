@@ -1,4 +1,4 @@
-package sconfig
+package kserver
 
 import (
 	"fmt"

@@ -2,28 +2,26 @@ package arbiter
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/kserver/kservice"
-	"github.com/ishumei/krpc/kserver/sconfig"
-	"github.com/ishumei/krpc/kserver/ssuite"
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	arbiterpredictor "github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"github.com/samber/do"
 )
 
 type ArbiterService struct {
-	*kservice.Kservice
+	*kserver.Kservice
 }
 
 func NewArbiterService(i *do.Injector) (*ArbiterService, error) {
-	opts := do.MustInvoke[*ssuite.ServerOptions](sconfig.Injector)
+	opts := do.MustInvoke[*kserver.ServerOptions](kserver.Injector)
 
-	predictor := do.MustInvoke[service.Predictor](sconfig.Injector)
+	predictor := do.MustInvoke[service.Predictor](kserver.Injector)
 
 	return &ArbiterService{
-		Kservice: kservice.MustNewKservice(i, arbiterpredictor.NewServer(predictor, server.WithSuite(opts))),
+		Kservice: kserver.MustNewKservice(i, arbiterpredictor.NewServer(predictor, server.WithSuite(opts))),
 	}, nil
 }
 
 func init() {
-	do.Provide(sconfig.Injector, NewArbiterService)
+	do.Provide(kserver.Injector, NewArbiterService)
 }

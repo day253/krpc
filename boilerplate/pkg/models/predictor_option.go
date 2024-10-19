@@ -9,7 +9,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/retry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/ishumei/krpc/boilerplate/pkg/conf"
-	"github.com/ishumei/krpc/kserver/sconfig"
+	"github.com/ishumei/krpc/kserver"
 	prometheus "github.com/ishumei/krpc/monitor-prometheus"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
@@ -41,7 +41,7 @@ func (m *PredictorOption) apply(p *Predictor) {
 		c, _ := predictor.NewClient(
 			m.NodePath,
 			client.WithShortConnection(),
-			client.WithResolver(do.MustInvoke[discovery.Resolver](sconfig.Injector)),
+			client.WithResolver(do.MustInvoke[discovery.Resolver](kserver.Injector)),
 			client.WithTransportProtocol(DefaultTransportProtocol),
 			client.WithConnectTimeout(DefaultConnectTimeout),
 			client.WithRPCTimeout(time.Duration(m.TimeoutMs)*time.Millisecond),

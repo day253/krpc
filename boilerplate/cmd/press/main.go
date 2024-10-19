@@ -9,10 +9,9 @@ import (
 	"github.com/bytedance/gopkg/util/gopool"
 	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
-	_ "github.com/ishumei/krpc/autolimit"
 	"github.com/ishumei/krpc/conf"
 	"github.com/ishumei/krpc/kclient"
-	"github.com/ishumei/krpc/kserver/sconfig"
+	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
@@ -34,7 +33,7 @@ func main() {
 		klog.Info(f.Name, ": ", f.Value)
 	})
 	client := kclient.MustNewArbiterClient(func() *kclient.SingleClientConf {
-		c := &sconfig.FrameConfig{}
+		c := &kserver.FrameConfig{}
 		err := conf.LoadDefaultConf(c, "frame", "overwrite.yaml")
 		klog.Info(objects.String(c))
 		return &kclient.SingleClientConf{
