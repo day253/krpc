@@ -1,9 +1,8 @@
 package main
 
 import (
-	"log"
-
 	re "github.com/ishumei/krpc/protocols/image/kitex_gen/shumei/strategy/re/imagepredictor"
+	"log"
 )
 
 func main() {

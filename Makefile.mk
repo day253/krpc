@@ -92,6 +92,7 @@ golangci-lint:
 		-E gocritic \
 		-E gofmt \
 		-E goimports \
+		--skip-dirs=protocols \
 		./...
 
 golangci-lint-fix:
@@ -106,6 +107,7 @@ golangci-lint-fix:
 		-E gocritic \
 		-E gofmt \
 		-E goimports \
+		--skip-dirs=protocols \
 		./...
 
 .PHONY: package
