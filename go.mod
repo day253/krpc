@@ -7,9 +7,9 @@ require (
 	github.com/Masterminds/sprig/v3 v3.3.0
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/alibaba/sentinel-golang/pkg/adapters/kitex v0.0.0-20241014064434-f13247da595a
-	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.1.1
 	github.com/bytedance/sonic v1.12.3
+	github.com/cloudwego/gopkg v0.1.2
 	github.com/cloudwego/kitex v0.11.3
 	github.com/creasty/defaults v1.8.0
 	github.com/expr-lang/expr v1.16.9
@@ -44,6 +44,7 @@ require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
 	github.com/Masterminds/semver/v3 v3.3.0 // indirect
 	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/apache/thrift v0.13.0 // indirect
 	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bytedance/sonic/loader v0.2.0 // indirect
@@ -55,7 +56,6 @@ require (
 	github.com/cloudwego/dynamicgo v0.4.0 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.0 // indirect
-	github.com/cloudwego/gopkg v0.1.2 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
 	github.com/cloudwego/netpoll v0.6.4 // indirect

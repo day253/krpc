@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-
 	re "github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re"
 )
 
