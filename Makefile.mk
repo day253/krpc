@@ -20,7 +20,7 @@ prepare: prepare-dep
 
 prepare-dep:
 	git config --global http.sslVerify false
-	git config --global url.git@code.aliyun.com:.insteadOf https://code.aliyun.com/
+	# git config --global url.git@code.aliyun.com:.insteadOf https://code.aliyun.com/
 	git submodule update --init --recursive
 
 set-env:
@@ -28,7 +28,7 @@ set-env:
 	$(GO) env -w CGO_ENABLED=1
 	# $(GO) env -w GOPROXY=https://proxy.golang.com.cn,direct
 	$(GO) env -w GONOSUMDB=\*
-	$(GO) env -w GOPRIVATE=code.aliyun.com
+	# $(GO) env -w GOPRIVATE=code.aliyun.com
 
 .PHONY: compile
 compile: pre-compile post-compile
@@ -44,8 +44,8 @@ proto: proto-tools
 
 proto-tools: set-env
 	@for repo in \
-		"github.com/cloudwego/kitex/tool/cmd/kitex@v0.5.2" \
-		"github.com/cloudwego/thriftgo@v0.2.11" \
+		"github.com/cloudwego/kitex/tool/cmd/kitex@v0.11.3" \
+		"github.com/cloudwego/thriftgo@v0.3.17" \
 	; do \
 		$(GO) install -v $$repo; \
 	done
@@ -83,6 +83,7 @@ check-tools: set-env
 	$(GO) install -v "github.com/golangci/golangci-lint/cmd/golangci-lint@v1.54.1"
 
 golangci-lint:
+	PATH=$(GOBIN):$$PATH && \
 	golangci-lint run \
 		--timeout=10m \
 		-D errcheck \
@@ -95,6 +96,7 @@ golangci-lint:
 		./...
 
 golangci-lint-fix:
+	PATH=$(GOBIN):$$PATH && \
 	golangci-lint run \
 		--fix \
 		--timeout=10m \
