@@ -1,16 +1,14 @@
-package registry
+package registry_zookeeper
 
 import (
 	"testing"
-
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 )
 
 func TestRegistryInfo_Path(t *testing.T) {
 	type fields struct {
 		ServiceName string
 		Port        string
-		NodeInfo    *registry_zookeeper.NodeInfo
+		NodeInfo    *NodeInfo
 	}
 	tests := []struct {
 		name   string
@@ -22,7 +20,7 @@ func TestRegistryInfo_Path(t *testing.T) {
 			fields: fields{
 				ServiceName: "test",
 				Port:        "80",
-				NodeInfo: &registry_zookeeper.NodeInfo{
+				NodeInfo: &NodeInfo{
 					Host:   "127.0.0.1",
 					Port:   80,
 					Weight: 1,

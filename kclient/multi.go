@@ -7,7 +7,6 @@ import (
 	"github.com/ishumei/krpc/logging"
 	"github.com/ishumei/krpc/objects"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
-	"github.com/ishumei/krpc/registry-zookeeper/resolver"
 	"github.com/samber/do"
 )
 
@@ -28,12 +27,12 @@ func InjectClientFromMultiClientConf(c *MultiClientConf) {
 	do.Override(Injector, func(i *do.Injector) (discovery.Resolver, error) {
 		logger, err := do.Invoke[*logging.Logger](logging.Injector)
 		if err == nil {
-			return resolver.NewZookeeperResolverWithConf(
+			return registry_zookeeper.NewZookeeperResolverWithConf(
 				c.ResolverConf.Resolver,
 				registry_zookeeper.WithLogger(logger),
 			)
 		} else {
-			return resolver.NewZookeeperResolverWithConf(
+			return registry_zookeeper.NewZookeeperResolverWithConf(
 				c.ResolverConf.Resolver,
 			)
 		}

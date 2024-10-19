@@ -1,4 +1,4 @@
-package registry
+package registry_zookeeper
 
 import (
 	"net"
@@ -6,21 +6,20 @@ import (
 	"strings"
 
 	"github.com/cloudwego/kitex/pkg/registry"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 )
 
 type serviceInfo struct {
 	ServiceName string
 	Port        string
-	*registry_zookeeper.NodeInfo
+	*NodeInfo
 }
 
 // path format as follows:
 // /{ENV_ROLE}/{serviceName}/{ip}:{port}
 func (n *serviceInfo) Path() string {
 	var path string
-	if !strings.HasPrefix(n.ServiceName, registry_zookeeper.Separator) {
-		path = registry_zookeeper.Separator + n.ServiceName
+	if !strings.HasPrefix(n.ServiceName, Separator) {
+		path = Separator + n.ServiceName
 	} else {
 		path = n.ServiceName
 	}
@@ -51,6 +50,6 @@ func newServiceInfo(info *registry.Info, inetPrefix string) *serviceInfo {
 	return &serviceInfo{
 		ServiceName: info.ServiceName,
 		Port:        port,
-		NodeInfo:    registry_zookeeper.NewNodeInfo(host, port),
+		NodeInfo:    NewNodeInfo(host, port),
 	}
 }

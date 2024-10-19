@@ -8,7 +8,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/ishumei/krpc/logging"
 	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
-	"github.com/ishumei/krpc/registry-zookeeper/resolver"
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 	"github.com/samber/do"
 )
@@ -43,12 +42,12 @@ func MustNewKclient(c *SingleClientConf) *Kclient {
 		do.Override(Injector, func(i *do.Injector) (discovery.Resolver, error) {
 			logger, err := do.Invoke[*logging.Logger](logging.Injector)
 			if err == nil {
-				return resolver.NewZookeeperResolverWithConf(
+				return registry_zookeeper.NewZookeeperResolverWithConf(
 					c.ResolverConf.Resolver,
 					registry_zookeeper.WithLogger(logger),
 				)
 			} else {
-				return resolver.NewZookeeperResolverWithConf(
+				return registry_zookeeper.NewZookeeperResolverWithConf(
 					c.ResolverConf.Resolver,
 				)
 			}

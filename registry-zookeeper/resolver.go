@@ -1,4 +1,4 @@
-package resolver
+package registry_zookeeper
 
 import (
 	"context"
@@ -11,7 +11,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/go-zookeeper/zk"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 )
 
 type ZookeeperResolver struct {
@@ -19,9 +18,9 @@ type ZookeeperResolver struct {
 }
 
 // NewZookeeperResolverWithConf
-func NewZookeeperResolverWithConf(c registry_zookeeper.Conf, options ...registry_zookeeper.Option) (*ZookeeperResolver, error) {
+func NewZookeeperResolverWithConf(c Conf, options ...Option) (*ZookeeperResolver, error) {
 	return NewZookeeperResolverWithAuth(
-		strings.Split(c.Metabase, registry_zookeeper.DefaultRegistrySeparater),
+		strings.Split(c.Metabase, DefaultRegistrySeparater),
 		time.Duration(c.TimeoutMs)*time.Millisecond,
 		c.User,
 		c.Password,
@@ -30,13 +29,13 @@ func NewZookeeperResolverWithConf(c registry_zookeeper.Conf, options ...registry
 }
 
 // NewZookeeperResolver create a zookeeper based resolver
-func NewZookeeperResolver(servers []string, sessionTimeout time.Duration, options ...registry_zookeeper.Option) (*ZookeeperResolver, error) {
+func NewZookeeperResolver(servers []string, sessionTimeout time.Duration, options ...Option) (*ZookeeperResolver, error) {
 	return NewZookeeperResolverWithAuth(servers, sessionTimeout, "", "", options...)
 }
 
 // NewZookeeperResolver create a zookeeper based resolver with auth
-func NewZookeeperResolverWithAuth(servers []string, sessionTimeout time.Duration, user, password string, options ...registry_zookeeper.Option) (*ZookeeperResolver, error) {
-	p := registry_zookeeper.NewZookeeperParams(servers, sessionTimeout, user, password)
+func NewZookeeperResolverWithAuth(servers []string, sessionTimeout time.Duration, user, password string, options ...Option) (*ZookeeperResolver, error) {
+	p := NewZookeeperParams(servers, sessionTimeout, user, password)
 	for _, option := range options {
 		option(p)
 	}
@@ -57,8 +56,8 @@ func (r *ZookeeperResolver) Target(ctx context.Context, target rpcinfo.EndpointI
 // Resolve implements the Resolver interface.
 func (r *ZookeeperResolver) Resolve(ctx context.Context, desc string) (discovery.Result, error) {
 	path := desc
-	if !strings.HasPrefix(path, registry_zookeeper.Separator) {
-		path = registry_zookeeper.Separator + path
+	if !strings.HasPrefix(path, Separator) {
+		path = Separator + path
 	}
 	eps, err := r.getEndPoints(path)
 	if err != nil {
@@ -85,11 +84,11 @@ func (r *ZookeeperResolver) getEndPoints(path string) ([]string, error) {
 }
 
 func (r *ZookeeperResolver) detailEndPoints(path, ep string) (discovery.Instance, error) {
-	data, _, err := r.Get(path + registry_zookeeper.Separator + ep)
+	data, _, err := r.Get(path + Separator + ep)
 	if err != nil {
 		return nil, err
 	}
-	en := new(registry_zookeeper.NodeInfo)
+	en := new(NodeInfo)
 	err = json.Unmarshal(data, en)
 	if err != nil {
 		return nil, fmt.Errorf("unmarshal data [%s] error, cause %w", data, err)

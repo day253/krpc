@@ -1,4 +1,4 @@
-package registry
+package registry_zookeeper
 
 import (
 	"context"
@@ -12,7 +12,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/registry"
 	"github.com/go-zookeeper/zk"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	"go.uber.org/multierr"
 )
 
@@ -28,7 +27,7 @@ type meta struct {
 }
 
 type ZookeeperRegistry struct {
-	*registry_zookeeper.ZookeeperParams
+	*ZookeeperParams
 	sync.RWMutex
 	inetPrefix string
 	metas      map[string]*meta
@@ -44,9 +43,9 @@ var (
 )
 
 // NewZookeeperRegistryWithConf
-func NewZookeeperRegistryWithConf(c registry_zookeeper.Conf, inetPrefix string, options ...registry_zookeeper.Option) (*ZookeeperRegistry, error) {
+func NewZookeeperRegistryWithConf(c Conf, inetPrefix string, options ...Option) (*ZookeeperRegistry, error) {
 	return NewZookeeperRegistryWithAuth(
-		strings.Split(c.Metabase, registry_zookeeper.DefaultRegistrySeparater),
+		strings.Split(c.Metabase, DefaultRegistrySeparater),
 		time.Duration(c.TimeoutMs)*time.Millisecond,
 		c.User,
 		c.Password,
@@ -55,12 +54,12 @@ func NewZookeeperRegistryWithConf(c registry_zookeeper.Conf, inetPrefix string, 
 	)
 }
 
-func NewZookeeperRegistry(servers []string, sessionTimeout time.Duration, inetPrefix string, options ...registry_zookeeper.Option) (*ZookeeperRegistry, error) {
+func NewZookeeperRegistry(servers []string, sessionTimeout time.Duration, inetPrefix string, options ...Option) (*ZookeeperRegistry, error) {
 	return NewZookeeperRegistryWithAuth(servers, sessionTimeout, "", "", inetPrefix, options...)
 }
 
-func NewZookeeperRegistryWithAuth(servers []string, sessionTimeout time.Duration, user, password string, inetPrefix string, options ...registry_zookeeper.Option) (*ZookeeperRegistry, error) {
-	p := registry_zookeeper.NewZookeeperParams(servers, sessionTimeout, user, password)
+func NewZookeeperRegistryWithAuth(servers []string, sessionTimeout time.Duration, user, password string, inetPrefix string, options ...Option) (*ZookeeperRegistry, error) {
+	p := NewZookeeperParams(servers, sessionTimeout, user, password)
 	for _, option := range options {
 		option(p)
 	}

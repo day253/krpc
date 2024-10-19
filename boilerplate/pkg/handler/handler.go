@@ -17,7 +17,7 @@ import (
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
-	"github.com/ishumei/krpc/registry-zookeeper/registry"
+	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	"github.com/jncornett/doublebuf"
 	"github.com/samber/do"
 	"github.com/samber/lo"
@@ -108,11 +108,11 @@ func (s *mirrorClients) Predict(ctx context.Context, request *service.PredictReq
 }
 
 func MustNew() *mirrorClients {
-	zkConn := do.MustInvoke[*registry.ZookeeperRegistry](sconfig.Injector)
+	zkConn := do.MustInvoke[*registry_zookeeper.ZookeeperRegistry](sconfig.Injector)
 	sConf := do.MustInvoke[*sconfig.FrameConfig](sconfig.Injector)
 	childNodes, _, err := zkConn.Children(sConf.ServiceName)
 	lo.Must0(err)
-	localIp, err := registry.GetLocalIp("")
+	localIp, err := registry_zookeeper.GetLocalIp("")
 	lo.Must0(err)
 	localIpPort := fmt.Sprintf("%s:%d", localIp, sConf.Port)
 	klog.Info("selfIpPort: ", localIpPort)

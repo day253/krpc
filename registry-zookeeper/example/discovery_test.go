@@ -10,8 +10,7 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/registry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
-	zkregistry "github.com/ishumei/krpc/registry-zookeeper/registry"
-	"github.com/ishumei/krpc/registry-zookeeper/resolver"
+	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,7 +31,7 @@ func TestZookeeperDiscovery(t *testing.T) {
 	targetPort := testRegisterPort()
 
 	// register
-	r, err := zkregistry.NewZookeeperRegistry(testZkServers, 40*time.Second, "")
+	r, err := registry_zookeeper.NewZookeeperRegistry(testZkServers, 40*time.Second, "")
 	assert.Nil(t, err)
 	addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%d", targetPort))
 	assert.Nil(t, err)
@@ -40,7 +39,7 @@ func TestZookeeperDiscovery(t *testing.T) {
 	assert.Nil(t, r.Register(info))
 
 	// resolve
-	res, err := resolver.NewZookeeperResolver(testZkServers, 40*time.Second)
+	res, err := registry_zookeeper.NewZookeeperResolver(testZkServers, 40*time.Second)
 	assert.Nil(t, err)
 	target := res.Target(context.Background(), rpcinfo.NewEndpointInfo(testRegisterPath, "", nil, nil))
 	result, err := res.Resolve(context.Background(), target)
@@ -68,7 +67,7 @@ func TestZookeeperResolverWithAuth(t *testing.T) {
 	targetPort := testRegisterPort()
 
 	// register
-	r, err := zkregistry.NewZookeeperRegistryWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123", "")
+	r, err := registry_zookeeper.NewZookeeperRegistryWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123", "")
 	assert.Nil(t, err)
 	addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%d", targetPort))
 	assert.Nil(t, err)
@@ -76,7 +75,7 @@ func TestZookeeperResolverWithAuth(t *testing.T) {
 	assert.Nil(t, r.Register(info))
 
 	// resolve
-	res, err := resolver.NewZookeeperResolverWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123")
+	res, err := registry_zookeeper.NewZookeeperResolverWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123")
 	assert.Nil(t, err)
 	target := res.Target(context.Background(), rpcinfo.NewEndpointInfo(testRegisterPath, "", nil, nil))
 	result, err := res.Resolve(context.Background(), target)
