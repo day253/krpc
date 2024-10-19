@@ -1,12 +1,7 @@
-//go:build go1.18
-// +build go1.18
-
 package objects
 
 import (
-	"encoding/json"
-
-	"github.com/bytedance/sonic"
+	json "github.com/bytedance/sonic"
 )
 
 func String[T any](t T) string {
@@ -14,7 +9,7 @@ func String[T any](t T) string {
 }
 
 func Bytes[T any](t T) []byte {
-	result, _ := sonic.Marshal(t)
+	result, _ := json.Marshal(t)
 	return result
 }
 

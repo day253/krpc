@@ -1,9 +1,10 @@
 package registry_zookeeper
 
 import (
-	"encoding/json"
 	"os"
 	"strconv"
+
+	json "github.com/bytedance/sonic"
 )
 
 type serversetEndpoint struct {

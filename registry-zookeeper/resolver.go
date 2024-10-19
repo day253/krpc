@@ -2,11 +2,12 @@ package registry_zookeeper
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"net"
 	"strings"
 	"time"
+
+	json "github.com/bytedance/sonic"
 
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/bytedance/sonic"
+	json "github.com/bytedance/sonic"
 )
 
 var (
@@ -69,7 +69,7 @@ func M(keyAndValuePairs ...interface{}) Map {
 // NewMapFromJSON creates a new map from a JSON string representation
 func NewMapFromJSON(data string) (Map, error) {
 	var unmarshalled map[string]interface{}
-	err := sonic.Unmarshal([]byte(data), &unmarshalled)
+	err := json.Unmarshal([]byte(data), &unmarshalled)
 	if err != nil {
 		return nil, errors.New("Map: JSON decode failed with: " + err.Error())
 	}
@@ -253,7 +253,7 @@ func (d Map) MSI() map[string]interface{} {
 
 // JSON converts the map to a JSON string
 func (d Map) JSON() (string, error) {
-	result, err := sonic.Marshal(d)
+	result, err := json.Marshal(d)
 	if err != nil {
 		err = errors.New("Map: JSON encode failed with: " + err.Error())
 	}
