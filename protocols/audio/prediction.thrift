@@ -12,7 +12,12 @@ struct Audio {
 struct AudioPredictRequest {
     1: optional string requestId,   
     2: optional string organization, 
-    3: optional Audio audio,
+    3: optional string product,
+    4: optional string sceneId,
+    5: optional string appId,
+    6: optional string channel,
+    7: optional string data,
+    8: optional Audio audio,
 }
 
 struct AudioPredictResult {

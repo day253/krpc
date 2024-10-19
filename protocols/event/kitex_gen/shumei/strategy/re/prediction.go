@@ -104,7 +104,12 @@ func (p *Event) DeepEqual(ano *Event) bool {
 type EventPredictRequest struct {
 	RequestId    *string `thrift:"requestId,1,optional" frugal:"1,optional,string" json:"requestId,omitempty"`
 	Organization *string `thrift:"organization,2,optional" frugal:"2,optional,string" json:"organization,omitempty"`
-	Event        *Event  `thrift:"event,3,optional" frugal:"3,optional,Event" json:"event,omitempty"`
+	Product      *string `thrift:"product,3,optional" frugal:"3,optional,string" json:"product,omitempty"`
+	SceneId      *string `thrift:"sceneId,4,optional" frugal:"4,optional,string" json:"sceneId,omitempty"`
+	AppId        *string `thrift:"appId,5,optional" frugal:"5,optional,string" json:"appId,omitempty"`
+	Channel      *string `thrift:"channel,6,optional" frugal:"6,optional,string" json:"channel,omitempty"`
+	Data         *string `thrift:"data,7,optional" frugal:"7,optional,string" json:"data,omitempty"`
+	Event        *Event  `thrift:"event,8,optional" frugal:"8,optional,Event" json:"event,omitempty"`
 }
 
 func NewEventPredictRequest() *EventPredictRequest {
@@ -132,6 +137,51 @@ func (p *EventPredictRequest) GetOrganization() (v string) {
 	return *p.Organization
 }
 
+var EventPredictRequest_Product_DEFAULT string
+
+func (p *EventPredictRequest) GetProduct() (v string) {
+	if !p.IsSetProduct() {
+		return EventPredictRequest_Product_DEFAULT
+	}
+	return *p.Product
+}
+
+var EventPredictRequest_SceneId_DEFAULT string
+
+func (p *EventPredictRequest) GetSceneId() (v string) {
+	if !p.IsSetSceneId() {
+		return EventPredictRequest_SceneId_DEFAULT
+	}
+	return *p.SceneId
+}
+
+var EventPredictRequest_AppId_DEFAULT string
+
+func (p *EventPredictRequest) GetAppId() (v string) {
+	if !p.IsSetAppId() {
+		return EventPredictRequest_AppId_DEFAULT
+	}
+	return *p.AppId
+}
+
+var EventPredictRequest_Channel_DEFAULT string
+
+func (p *EventPredictRequest) GetChannel() (v string) {
+	if !p.IsSetChannel() {
+		return EventPredictRequest_Channel_DEFAULT
+	}
+	return *p.Channel
+}
+
+var EventPredictRequest_Data_DEFAULT string
+
+func (p *EventPredictRequest) GetData() (v string) {
+	if !p.IsSetData() {
+		return EventPredictRequest_Data_DEFAULT
+	}
+	return *p.Data
+}
+
 var EventPredictRequest_Event_DEFAULT *Event
 
 func (p *EventPredictRequest) GetEvent() (v *Event) {
@@ -146,6 +196,21 @@ func (p *EventPredictRequest) SetRequestId(val *string) {
 func (p *EventPredictRequest) SetOrganization(val *string) {
 	p.Organization = val
 }
+func (p *EventPredictRequest) SetProduct(val *string) {
+	p.Product = val
+}
+func (p *EventPredictRequest) SetSceneId(val *string) {
+	p.SceneId = val
+}
+func (p *EventPredictRequest) SetAppId(val *string) {
+	p.AppId = val
+}
+func (p *EventPredictRequest) SetChannel(val *string) {
+	p.Channel = val
+}
+func (p *EventPredictRequest) SetData(val *string) {
+	p.Data = val
+}
 func (p *EventPredictRequest) SetEvent(val *Event) {
 	p.Event = val
 }
@@ -153,7 +218,12 @@ func (p *EventPredictRequest) SetEvent(val *Event) {
 var fieldIDToName_EventPredictRequest = map[int16]string{
 	1: "requestId",
 	2: "organization",
-	3: "event",
+	3: "product",
+	4: "sceneId",
+	5: "appId",
+	6: "channel",
+	7: "data",
+	8: "event",
 }
 
 func (p *EventPredictRequest) IsSetRequestId() bool {
@@ -162,6 +232,26 @@ func (p *EventPredictRequest) IsSetRequestId() bool {
 
 func (p *EventPredictRequest) IsSetOrganization() bool {
 	return p.Organization != nil
+}
+
+func (p *EventPredictRequest) IsSetProduct() bool {
+	return p.Product != nil
+}
+
+func (p *EventPredictRequest) IsSetSceneId() bool {
+	return p.SceneId != nil
+}
+
+func (p *EventPredictRequest) IsSetAppId() bool {
+	return p.AppId != nil
+}
+
+func (p *EventPredictRequest) IsSetChannel() bool {
+	return p.Channel != nil
+}
+
+func (p *EventPredictRequest) IsSetData() bool {
+	return p.Data != nil
 }
 
 func (p *EventPredictRequest) IsSetEvent() bool {
@@ -204,8 +294,48 @@ func (p *EventPredictRequest) Read(iprot thrift.TProtocol) (err error) {
 				goto SkipFieldError
 			}
 		case 3:
-			if fieldTypeId == thrift.STRUCT {
+			if fieldTypeId == thrift.STRING {
 				if err = p.ReadField3(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 4:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField4(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField5(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField6(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				if err = p.ReadField7(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		case 8:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField8(iprot); err != nil {
 					goto ReadFieldError
 				}
 			} else if err = iprot.Skip(fieldTypeId); err != nil {
@@ -263,6 +393,61 @@ func (p *EventPredictRequest) ReadField2(iprot thrift.TProtocol) error {
 	return nil
 }
 func (p *EventPredictRequest) ReadField3(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Product = _field
+	return nil
+}
+func (p *EventPredictRequest) ReadField4(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.SceneId = _field
+	return nil
+}
+func (p *EventPredictRequest) ReadField5(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.AppId = _field
+	return nil
+}
+func (p *EventPredictRequest) ReadField6(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Channel = _field
+	return nil
+}
+func (p *EventPredictRequest) ReadField7(iprot thrift.TProtocol) error {
+
+	var _field *string
+	if v, err := iprot.ReadString(); err != nil {
+		return err
+	} else {
+		_field = &v
+	}
+	p.Data = _field
+	return nil
+}
+func (p *EventPredictRequest) ReadField8(iprot thrift.TProtocol) error {
 	_field := NewEvent()
 	if err := _field.Read(iprot); err != nil {
 		return err
@@ -287,6 +472,26 @@ func (p *EventPredictRequest) Write(oprot thrift.TProtocol) (err error) {
 		}
 		if err = p.writeField3(oprot); err != nil {
 			fieldId = 3
+			goto WriteFieldError
+		}
+		if err = p.writeField4(oprot); err != nil {
+			fieldId = 4
+			goto WriteFieldError
+		}
+		if err = p.writeField5(oprot); err != nil {
+			fieldId = 5
+			goto WriteFieldError
+		}
+		if err = p.writeField6(oprot); err != nil {
+			fieldId = 6
+			goto WriteFieldError
+		}
+		if err = p.writeField7(oprot); err != nil {
+			fieldId = 7
+			goto WriteFieldError
+		}
+		if err = p.writeField8(oprot); err != nil {
+			fieldId = 8
 			goto WriteFieldError
 		}
 	}
@@ -346,11 +551,11 @@ WriteFieldEndError:
 }
 
 func (p *EventPredictRequest) writeField3(oprot thrift.TProtocol) (err error) {
-	if p.IsSetEvent() {
-		if err = oprot.WriteFieldBegin("event", thrift.STRUCT, 3); err != nil {
+	if p.IsSetProduct() {
+		if err = oprot.WriteFieldBegin("product", thrift.STRING, 3); err != nil {
 			goto WriteFieldBeginError
 		}
-		if err := p.Event.Write(oprot); err != nil {
+		if err := oprot.WriteString(*p.Product); err != nil {
 			return err
 		}
 		if err = oprot.WriteFieldEnd(); err != nil {
@@ -362,6 +567,101 @@ WriteFieldBeginError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 begin error: ", p), err)
 WriteFieldEndError:
 	return thrift.PrependError(fmt.Sprintf("%T write field 3 end error: ", p), err)
+}
+
+func (p *EventPredictRequest) writeField4(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSceneId() {
+		if err = oprot.WriteFieldBegin("sceneId", thrift.STRING, 4); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.SceneId); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 4 end error: ", p), err)
+}
+
+func (p *EventPredictRequest) writeField5(oprot thrift.TProtocol) (err error) {
+	if p.IsSetAppId() {
+		if err = oprot.WriteFieldBegin("appId", thrift.STRING, 5); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.AppId); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 5 end error: ", p), err)
+}
+
+func (p *EventPredictRequest) writeField6(oprot thrift.TProtocol) (err error) {
+	if p.IsSetChannel() {
+		if err = oprot.WriteFieldBegin("channel", thrift.STRING, 6); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.Channel); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 6 end error: ", p), err)
+}
+
+func (p *EventPredictRequest) writeField7(oprot thrift.TProtocol) (err error) {
+	if p.IsSetData() {
+		if err = oprot.WriteFieldBegin("data", thrift.STRING, 7); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := oprot.WriteString(*p.Data); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 7 end error: ", p), err)
+}
+
+func (p *EventPredictRequest) writeField8(oprot thrift.TProtocol) (err error) {
+	if p.IsSetEvent() {
+		if err = oprot.WriteFieldBegin("event", thrift.STRUCT, 8); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := p.Event.Write(oprot); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 8 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 8 end error: ", p), err)
 }
 
 func (p *EventPredictRequest) String() string {
@@ -384,7 +684,22 @@ func (p *EventPredictRequest) DeepEqual(ano *EventPredictRequest) bool {
 	if !p.Field2DeepEqual(ano.Organization) {
 		return false
 	}
-	if !p.Field3DeepEqual(ano.Event) {
+	if !p.Field3DeepEqual(ano.Product) {
+		return false
+	}
+	if !p.Field4DeepEqual(ano.SceneId) {
+		return false
+	}
+	if !p.Field5DeepEqual(ano.AppId) {
+		return false
+	}
+	if !p.Field6DeepEqual(ano.Channel) {
+		return false
+	}
+	if !p.Field7DeepEqual(ano.Data) {
+		return false
+	}
+	if !p.Field8DeepEqual(ano.Event) {
 		return false
 	}
 	return true
@@ -414,7 +729,67 @@ func (p *EventPredictRequest) Field2DeepEqual(src *string) bool {
 	}
 	return true
 }
-func (p *EventPredictRequest) Field3DeepEqual(src *Event) bool {
+func (p *EventPredictRequest) Field3DeepEqual(src *string) bool {
+
+	if p.Product == src {
+		return true
+	} else if p.Product == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.Product, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *EventPredictRequest) Field4DeepEqual(src *string) bool {
+
+	if p.SceneId == src {
+		return true
+	} else if p.SceneId == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.SceneId, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *EventPredictRequest) Field5DeepEqual(src *string) bool {
+
+	if p.AppId == src {
+		return true
+	} else if p.AppId == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.AppId, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *EventPredictRequest) Field6DeepEqual(src *string) bool {
+
+	if p.Channel == src {
+		return true
+	} else if p.Channel == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.Channel, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *EventPredictRequest) Field7DeepEqual(src *string) bool {
+
+	if p.Data == src {
+		return true
+	} else if p.Data == nil || src == nil {
+		return false
+	}
+	if strings.Compare(*p.Data, *src) != 0 {
+		return false
+	}
+	return true
+}
+func (p *EventPredictRequest) Field8DeepEqual(src *Event) bool {
 
 	if !p.Event.DeepEqual(src) {
 		return false

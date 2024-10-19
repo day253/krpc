@@ -115,8 +115,78 @@ func (p *EventPredictRequest) FastRead(buf []byte) (int, error) {
 				}
 			}
 		case 3:
-			if fieldTypeId == thrift.STRUCT {
+			if fieldTypeId == thrift.STRING {
 				l, err = p.FastReadField3(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 4:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField4(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 5:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField5(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 6:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField6(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 7:
+			if fieldTypeId == thrift.STRING {
+				l, err = p.FastReadField7(buf[offset:])
+				offset += l
+				if err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				l, err = thrift.Binary.Skip(buf[offset:], fieldTypeId)
+				offset += l
+				if err != nil {
+					goto SkipFieldError
+				}
+			}
+		case 8:
+			if fieldTypeId == thrift.STRUCT {
+				l, err = p.FastReadField8(buf[offset:])
 				offset += l
 				if err != nil {
 					goto ReadFieldError
@@ -176,6 +246,76 @@ func (p *EventPredictRequest) FastReadField2(buf []byte) (int, error) {
 
 func (p *EventPredictRequest) FastReadField3(buf []byte) (int, error) {
 	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.Product = _field
+	return offset, nil
+}
+
+func (p *EventPredictRequest) FastReadField4(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.SceneId = _field
+	return offset, nil
+}
+
+func (p *EventPredictRequest) FastReadField5(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.AppId = _field
+	return offset, nil
+}
+
+func (p *EventPredictRequest) FastReadField6(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.Channel = _field
+	return offset, nil
+}
+
+func (p *EventPredictRequest) FastReadField7(buf []byte) (int, error) {
+	offset := 0
+
+	var _field *string
+	if v, l, err := thrift.Binary.ReadString(buf[offset:]); err != nil {
+		return offset, err
+	} else {
+		offset += l
+		_field = &v
+	}
+	p.Data = _field
+	return offset, nil
+}
+
+func (p *EventPredictRequest) FastReadField8(buf []byte) (int, error) {
+	offset := 0
 	_field := NewEvent()
 	if l, err := _field.FastRead(buf[offset:]); err != nil {
 		return offset, err
@@ -197,6 +337,11 @@ func (p *EventPredictRequest) FastWriteNocopy(buf []byte, w thrift.NocopyWriter)
 		offset += p.fastWriteField1(buf[offset:], w)
 		offset += p.fastWriteField2(buf[offset:], w)
 		offset += p.fastWriteField3(buf[offset:], w)
+		offset += p.fastWriteField4(buf[offset:], w)
+		offset += p.fastWriteField5(buf[offset:], w)
+		offset += p.fastWriteField6(buf[offset:], w)
+		offset += p.fastWriteField7(buf[offset:], w)
+		offset += p.fastWriteField8(buf[offset:], w)
 	}
 	offset += thrift.Binary.WriteFieldStop(buf[offset:])
 	return offset
@@ -208,6 +353,11 @@ func (p *EventPredictRequest) BLength() int {
 		l += p.field1Length()
 		l += p.field2Length()
 		l += p.field3Length()
+		l += p.field4Length()
+		l += p.field5Length()
+		l += p.field6Length()
+		l += p.field7Length()
+		l += p.field8Length()
 	}
 	l += thrift.Binary.FieldStopLength()
 	return l
@@ -233,8 +383,53 @@ func (p *EventPredictRequest) fastWriteField2(buf []byte, w thrift.NocopyWriter)
 
 func (p *EventPredictRequest) fastWriteField3(buf []byte, w thrift.NocopyWriter) int {
 	offset := 0
+	if p.IsSetProduct() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 3)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.Product)
+	}
+	return offset
+}
+
+func (p *EventPredictRequest) fastWriteField4(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetSceneId() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 4)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.SceneId)
+	}
+	return offset
+}
+
+func (p *EventPredictRequest) fastWriteField5(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetAppId() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 5)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.AppId)
+	}
+	return offset
+}
+
+func (p *EventPredictRequest) fastWriteField6(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetChannel() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 6)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.Channel)
+	}
+	return offset
+}
+
+func (p *EventPredictRequest) fastWriteField7(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
+	if p.IsSetData() {
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRING, 7)
+		offset += thrift.Binary.WriteStringNocopy(buf[offset:], w, *p.Data)
+	}
+	return offset
+}
+
+func (p *EventPredictRequest) fastWriteField8(buf []byte, w thrift.NocopyWriter) int {
+	offset := 0
 	if p.IsSetEvent() {
-		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 3)
+		offset += thrift.Binary.WriteFieldBegin(buf[offset:], thrift.STRUCT, 8)
 		offset += p.Event.FastWriteNocopy(buf[offset:], w)
 	}
 	return offset
@@ -259,6 +454,51 @@ func (p *EventPredictRequest) field2Length() int {
 }
 
 func (p *EventPredictRequest) field3Length() int {
+	l := 0
+	if p.IsSetProduct() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.Product)
+	}
+	return l
+}
+
+func (p *EventPredictRequest) field4Length() int {
+	l := 0
+	if p.IsSetSceneId() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.SceneId)
+	}
+	return l
+}
+
+func (p *EventPredictRequest) field5Length() int {
+	l := 0
+	if p.IsSetAppId() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.AppId)
+	}
+	return l
+}
+
+func (p *EventPredictRequest) field6Length() int {
+	l := 0
+	if p.IsSetChannel() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.Channel)
+	}
+	return l
+}
+
+func (p *EventPredictRequest) field7Length() int {
+	l := 0
+	if p.IsSetData() {
+		l += thrift.Binary.FieldBeginLength()
+		l += thrift.Binary.StringLengthNocopy(*p.Data)
+	}
+	return l
+}
+
+func (p *EventPredictRequest) field8Length() int {
 	l := 0
 	if p.IsSetEvent() {
 		l += thrift.Binary.FieldBeginLength()
