@@ -3,7 +3,7 @@ package conf
 import (
 	"github.com/creasty/defaults"
 	"github.com/ishumei/krpc/conf"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
+	"github.com/ishumei/krpc/zookeeper"
 	"github.com/samber/do"
 )
 
@@ -29,7 +29,7 @@ type Strategy struct {
 
 type Config struct {
 	Debug    bool
-	Registry registry_zookeeper.Conf
+	Registry zookeeper.Conf
 	Model    Model
 	Strategy Strategy
 }

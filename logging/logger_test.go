@@ -10,13 +10,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
-	sdktrace "go.opentelemetry.io/otel/sdk/trace"
+	"go.opentelemetry.io/otel/sdk/trace"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
 
 func stdoutProvider(ctx context.Context) func() {
-	provider := sdktrace.NewTracerProvider()
+	provider := trace.NewTracerProvider()
 	otel.SetTracerProvider(provider)
 
 	exp, err := stdouttrace.New(stdouttrace.WithPrettyPrint())
@@ -24,7 +24,7 @@ func stdoutProvider(ctx context.Context) func() {
 		panic(err)
 	}
 
-	bsp := sdktrace.NewBatchSpanProcessor(exp)
+	bsp := trace.NewBatchSpanProcessor(exp)
 	provider.RegisterSpanProcessor(bsp)
 
 	return func() {

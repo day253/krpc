@@ -2,7 +2,7 @@ package kclient
 
 import (
 	"github.com/cloudwego/kitex/pkg/connpool"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
+	"github.com/ishumei/krpc/zookeeper"
 	"github.com/samber/do"
 )
 
@@ -31,5 +31,5 @@ type ClientConf struct {
 
 type ResolverConf struct {
 	Hostports []string
-	Resolver  registry_zookeeper.Conf
+	Resolver  zookeeper.Conf
 }

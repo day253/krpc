@@ -9,7 +9,7 @@ import (
 	"github.com/creasty/defaults"
 	"github.com/ishumei/krpc/conf"
 	"github.com/ishumei/krpc/logging"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
+	"github.com/ishumei/krpc/zookeeper"
 	"github.com/samber/do"
 )
 
@@ -67,7 +67,7 @@ type FrameConfig struct {
 	Addr          string
 	Port          int    `default:"8888"`
 	ServiceName   string `default:"server"`
-	Registry      registry_zookeeper.Conf
+	Registry      zookeeper.Conf
 	Http          HttpConfig
 	OpenTelemetry OpenTelemetry
 	Sentinel      Sentinel

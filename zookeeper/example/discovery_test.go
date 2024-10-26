@@ -10,7 +10,7 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/registry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
+	"github.com/ishumei/krpc/zookeeper"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -31,7 +31,7 @@ func TestZookeeperDiscovery(t *testing.T) {
 	targetPort := testRegisterPort()
 
 	// register
-	r, err := registry_zookeeper.NewZookeeperRegistry(testZkServers, 40*time.Second, "")
+	r, err := zookeeper.NewZookeeperRegistry(testZkServers, 40*time.Second, "")
 	assert.Nil(t, err)
 	addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%d", targetPort))
 	assert.Nil(t, err)
@@ -39,7 +39,7 @@ func TestZookeeperDiscovery(t *testing.T) {
 	assert.Nil(t, r.Register(info))
 
 	// resolve
-	res, err := registry_zookeeper.NewZookeeperResolver(testZkServers, 40*time.Second)
+	res, err := zookeeper.NewZookeeperResolver(testZkServers, 40*time.Second)
 	assert.Nil(t, err)
 	target := res.Target(context.Background(), rpcinfo.NewEndpointInfo(testRegisterPath, "", nil, nil))
 	result, err := res.Resolve(context.Background(), target)
@@ -67,7 +67,7 @@ func TestZookeeperResolverWithAuth(t *testing.T) {
 	targetPort := testRegisterPort()
 
 	// register
-	r, err := registry_zookeeper.NewZookeeperRegistryWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123", "")
+	r, err := zookeeper.NewZookeeperRegistryWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123", "")
 	assert.Nil(t, err)
 	addr, err := net.ResolveTCPAddr("tcp", fmt.Sprintf(":%d", targetPort))
 	assert.Nil(t, err)
@@ -75,7 +75,7 @@ func TestZookeeperResolverWithAuth(t *testing.T) {
 	assert.Nil(t, r.Register(info))
 
 	// resolve
-	res, err := registry_zookeeper.NewZookeeperResolverWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123")
+	res, err := zookeeper.NewZookeeperResolverWithAuth(testZkServers, 40*time.Second, "zkadmin", "zkadmin123")
 	assert.Nil(t, err)
 	target := res.Target(context.Background(), rpcinfo.NewEndpointInfo(testRegisterPath, "", nil, nil))
 	result, err := res.Resolve(context.Background(), target)

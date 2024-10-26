@@ -14,7 +14,7 @@ import (
 	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/objects"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
+	"github.com/ishumei/krpc/zookeeper"
 	"go.uber.org/ratelimit"
 )
 
@@ -44,11 +44,11 @@ func main() {
 					}
 					return []string{}
 				}(),
-				Resolver: func() registry_zookeeper.Conf {
+				Resolver: func() zookeeper.Conf {
 					if err == nil {
 						return c.Registry
 					}
-					return registry_zookeeper.Conf{
+					return zookeeper.Conf{
 						Metabase:  *metabase,
 						TimeoutMs: 10000,
 					}

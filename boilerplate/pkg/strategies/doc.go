@@ -8,7 +8,7 @@ import (
 	"github.com/ishumei/krpc/boilerplate/pkg/models"
 	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/objects"
-	registry_zookeeper "github.com/ishumei/krpc/registry-zookeeper"
+	"github.com/ishumei/krpc/zookeeper"
 	"github.com/samber/do"
 )
 
@@ -17,7 +17,7 @@ func Init() error {
 	if err != nil {
 		return err
 	}
-	zookeeperConn, err := do.Invoke[*registry_zookeeper.ZookeeperResolver](kserver.Injector)
+	zookeeperConn, err := do.Invoke[*zookeeper.ZookeeperResolver](kserver.Injector)
 	if err != nil {
 		return err
 	}

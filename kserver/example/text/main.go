@@ -6,7 +6,7 @@ import (
 
 	"github.com/ishumei/krpc/kserver"
 	"github.com/ishumei/krpc/kserver/text"
-	re "github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re"
+	"github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re"
 	"github.com/samber/do"
 )
 

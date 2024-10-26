@@ -5,7 +5,7 @@ import (
 
 	"github.com/alibaba/sentinel-golang/api"
 	"github.com/alibaba/sentinel-golang/core/system"
-	sentinel "github.com/alibaba/sentinel-golang/pkg/adapters/kitex"
+	"github.com/alibaba/sentinel-golang/pkg/adapters/kitex"
 	"github.com/cloudwego/kitex/pkg/registry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
@@ -54,7 +54,7 @@ func NewServerOptions(i *do.Injector) (*ServerOptions, error) {
 	if c.Sentinel.Enabled {
 		options = append(
 			options,
-			server.WithMiddleware(sentinel.SentinelServerMiddleware()),
+			server.WithMiddleware(kitex.SentinelServerMiddleware()),
 		)
 		lo.Must0(api.InitDefault())
 		_, err := system.LoadRules(c.Sentinel.ToSystemRules())

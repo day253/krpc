@@ -1,4 +1,4 @@
-package registry_zookeeper
+package zookeeper
 
 import (
 	"reflect"
