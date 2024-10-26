@@ -8,7 +8,6 @@ import (
 	"time"
 
 	json "github.com/bytedance/sonic"
-
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/go-zookeeper/zk"

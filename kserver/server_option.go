@@ -10,7 +10,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	_ "github.com/ishumei/krpc/autolimit"
-	monitor_prometheus "github.com/ishumei/krpc/monitor-prometheus"
+	"github.com/ishumei/krpc/monitor"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	"github.com/samber/do"
 	"github.com/samber/lo"
@@ -32,7 +32,7 @@ func NewServerOptions(i *do.Injector) (*ServerOptions, error) {
 	options := []server.Option{
 		server.WithServiceAddr(addr),
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: c.ServiceName}),
-		server.WithTracer(monitor_prometheus.NewServerTracerWithoutExport()),
+		server.WithTracer(monitor.NewServerTracerWithoutExport()),
 		server.WithExitSignal(DefaultUserExitSignal),
 	}
 

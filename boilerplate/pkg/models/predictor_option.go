@@ -10,7 +10,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/ishumei/krpc/boilerplate/pkg/conf"
 	"github.com/ishumei/krpc/kserver"
-	prometheus "github.com/ishumei/krpc/monitor-prometheus"
+	"github.com/ishumei/krpc/monitor"
 	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 	"github.com/samber/do"
@@ -51,7 +51,7 @@ func (m *PredictorOption) apply(p *Predictor) {
 			//nolint:staticcheck // SA1019 ignore the deprecation warnings
 			client.WithSuite(tracing.NewFramedClientSuite()),
 			client.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: m.NodePath}),
-			client.WithTracer(prometheus.NewClientTracerWithoutExport()),
+			client.WithTracer(monitor.NewClientTracerWithoutExport()),
 		)
 		return c
 	}()

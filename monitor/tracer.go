@@ -1,4 +1,4 @@
-package monitor_prometheus
+package monitor
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/pkg/stats"
-	prom "github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -31,30 +31,30 @@ const (
 )
 
 var (
-	globalClientHandledCounter = prom.NewCounterVec(
-		prom.CounterOpts{
+	globalClientHandledCounter = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
 			Name: "arch_client_throughput",
 			Help: "Total number of RPCs completed by the client, regardless of success or failure.",
 		},
 		[]string{labelKeyCaller, labelKeyCallee, labelKeyDetail, labelKeyMethod, labelKeyStatus, labelKeyRetry},
 	)
-	globalClientHandledHistogram = prom.NewHistogramVec(
-		prom.HistogramOpts{
+	globalClientHandledHistogram = prometheus.NewHistogramVec(
+		prometheus.HistogramOpts{
 			Name:    "arch_client_latency_us",
 			Help:    "Latency (microseconds) of the RPC until it is finished.",
 			Buckets: []float64{5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000},
 		},
 		[]string{labelKeyCaller, labelKeyCallee, labelKeyDetail, labelKeyMethod, labelKeyStatus, labelKeyRetry},
 	)
-	globalServerHandledCounter = prom.NewCounterVec(
-		prom.CounterOpts{
+	globalServerHandledCounter = prometheus.NewCounterVec(
+		prometheus.CounterOpts{
 			Name: "arch_server_throughput",
 			Help: "Total number of RPCs completed by the server, regardless of success or failure.",
 		},
 		[]string{labelKeyCaller, labelKeyCallee, labelKeyDetail, labelKeyMethod, labelKeyStatus, labelKeyRetry},
 	)
-	globalServerHandledHistogram = prom.NewHistogramVec(
-		prom.HistogramOpts{
+	globalServerHandledHistogram = prometheus.NewHistogramVec(
+		prometheus.HistogramOpts{
 			Name:    "arch_server_latency_us",
 			Help:    "Latency (microseconds) of RPC that had been application-level handled by the server.",
 			Buckets: []float64{5000, 10000, 25000, 50000, 100000, 250000, 500000, 1000000},
@@ -92,9 +92,9 @@ func (e errDetail) Detail() string {
 }
 
 // genLabels make labels values.
-func genLabels(ri rpcinfo.RPCInfo) prom.Labels {
+func genLabels(ri rpcinfo.RPCInfo) prometheus.Labels {
 	var (
-		labels = make(prom.Labels)
+		labels = make(prometheus.Labels)
 
 		caller = ri.From()
 		callee = ri.To()
@@ -118,8 +118,8 @@ func genLabels(ri rpcinfo.RPCInfo) prom.Labels {
 }
 
 type clientTracer struct {
-	clientHandledCounter   *prom.CounterVec
-	clientHandledHistogram *prom.HistogramVec
+	clientHandledCounter   *prometheus.CounterVec
+	clientHandledHistogram *prometheus.HistogramVec
 }
 
 // Start record the beginning of an RPC invocation.
@@ -137,7 +137,7 @@ func (c *clientTracer) Finish(ctx context.Context) {
 	rpcFinish := ri.Stats().GetEvent(stats.RPCFinish)
 	cost := rpcFinish.Time().Sub(rpcStart.Time())
 
-	extraLabels := make(prom.Labels)
+	extraLabels := make(prometheus.Labels)
 	extraLabels[labelKeyStatus] = statusSucceed
 	if ri.Stats().Error() != nil {
 		extraLabels[labelKeyStatus] = statusError
@@ -173,8 +173,8 @@ func NewClientTracerWithoutExport() stats.Tracer {
 }
 
 type serverTracer struct {
-	serverHandledCounter   *prom.CounterVec
-	serverHandledHistogram *prom.HistogramVec
+	serverHandledCounter   *prometheus.CounterVec
+	serverHandledHistogram *prometheus.HistogramVec
 }
 
 // Start record the beginning of server handling request from client.
@@ -193,7 +193,7 @@ func (c *serverTracer) Finish(ctx context.Context) {
 	rpcFinish := ri.Stats().GetEvent(stats.RPCFinish)
 	cost := rpcFinish.Time().Sub(rpcStart.Time())
 
-	extraLabels := make(prom.Labels)
+	extraLabels := make(prometheus.Labels)
 	extraLabels[labelKeyStatus] = statusSucceed
 	if ri.Stats().Error() != nil {
 		extraLabels[labelKeyStatus] = statusError
@@ -249,8 +249,8 @@ func removeDynamicDetail(val, def string) string {
 }
 
 func init() {
-	prom.MustRegister(globalClientHandledCounter)
-	prom.MustRegister(globalClientHandledHistogram)
-	prom.MustRegister(globalServerHandledCounter)
-	prom.MustRegister(globalServerHandledHistogram)
+	prometheus.MustRegister(globalClientHandledCounter)
+	prometheus.MustRegister(globalClientHandledHistogram)
+	prometheus.MustRegister(globalServerHandledCounter)
+	prometheus.MustRegister(globalServerHandledHistogram)
 }

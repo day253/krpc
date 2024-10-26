@@ -1,10 +1,10 @@
-package monitor_prometheus
+package monitor
 
 import (
 	"strconv"
 	"time"
 
-	prom "github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
 )
 
 type ArchClientLabel struct {
@@ -20,7 +20,7 @@ func ArchClientThroughput(labels *ArchClientLabel) {
 	if labels == nil {
 		return
 	}
-	var l = make(prom.Labels)
+	var l = make(prometheus.Labels)
 	l[labelKeyCaller] = defaultValIfEmpty(labels.Caller, unknownLabelValue)
 	l[labelKeyCallee] = defaultValIfEmpty(labels.Callee, unknownLabelValue)
 	l[labelKeyMethod] = defaultValIfEmpty(labels.Method, unknownLabelValue)
@@ -34,7 +34,7 @@ func ArchClientLatencyUs(value time.Duration, labels *ArchClientLabel) {
 	if labels == nil {
 		return
 	}
-	var l = make(prom.Labels)
+	var l = make(prometheus.Labels)
 	l[labelKeyCaller] = defaultValIfEmpty(labels.Caller, unknownLabelValue)
 	l[labelKeyCallee] = defaultValIfEmpty(labels.Callee, unknownLabelValue)
 	l[labelKeyMethod] = defaultValIfEmpty(labels.Method, unknownLabelValue)
@@ -57,7 +57,7 @@ func ArchServerThroughput(labels *ArchServerLabel) {
 	if labels == nil {
 		return
 	}
-	var l = make(prom.Labels)
+	var l = make(prometheus.Labels)
 	l[labelKeyCaller] = defaultValIfEmpty(labels.Caller, unknownLabelValue)
 	l[labelKeyCallee] = defaultValIfEmpty(labels.Callee, unknownLabelValue)
 	l[labelKeyMethod] = defaultValIfEmpty(labels.Method, unknownLabelValue)
@@ -71,7 +71,7 @@ func ArchServerLatencyUs(value time.Duration, labels *ArchServerLabel) {
 	if labels == nil {
 		return
 	}
-	var l = make(prom.Labels)
+	var l = make(prometheus.Labels)
 	l[labelKeyCaller] = defaultValIfEmpty(labels.Caller, unknownLabelValue)
 	l[labelKeyCallee] = defaultValIfEmpty(labels.Callee, unknownLabelValue)
 	l[labelKeyMethod] = defaultValIfEmpty(labels.Method, unknownLabelValue)

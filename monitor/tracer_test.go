@@ -1,4 +1,4 @@
-package monitor_prometheus
+package monitor
 
 import (
 	"io"
@@ -7,13 +7,13 @@ import (
 	"testing"
 	"time"
 
-	prom "github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPrometheusReporter(t *testing.T) {
-	registry := prom.NewRegistry()
+	registry := prometheus.NewRegistry()
 	http.Handle("/prometheus", promhttp.HandlerFor(registry, promhttp.HandlerOpts{ErrorHandling: promhttp.ContinueOnError}))
 	go func() {
 		if err := http.ListenAndServe(":9090", nil); err != nil {
@@ -22,26 +22,26 @@ func TestPrometheusReporter(t *testing.T) {
 		}
 	}()
 
-	counter := prom.NewCounterVec(
-		prom.CounterOpts{
+	counter := prometheus.NewCounterVec(
+		prometheus.CounterOpts{
 			Name:        "test_counter",
-			ConstLabels: prom.Labels{"service": "prometheus-test"},
+			ConstLabels: prometheus.Labels{"service": "prometheus-test"},
 		},
 		[]string{"test1", "test2"},
 	)
 	registry.MustRegister(counter)
 
-	histogram := prom.NewHistogramVec(
-		prom.HistogramOpts{
+	histogram := prometheus.NewHistogramVec(
+		prometheus.HistogramOpts{
 			Name:        "test_histogram",
-			ConstLabels: prom.Labels{"service": "prometheus-test"},
-			Buckets:     prom.DefBuckets,
+			ConstLabels: prometheus.Labels{"service": "prometheus-test"},
+			Buckets:     prometheus.DefBuckets,
 		},
 		[]string{"test1", "test2"},
 	)
 	registry.MustRegister(histogram)
 
-	labels := prom.Labels{
+	labels := prometheus.Labels{
 		"test1": "abc",
 		"test2": "def",
 	}

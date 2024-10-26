@@ -7,7 +7,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/retry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/transport"
-	monitor_prometheus "github.com/ishumei/krpc/monitor-prometheus"
+	"github.com/ishumei/krpc/monitor"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 )
 
@@ -35,7 +35,7 @@ func MustNewClientOptionsWithoutResolver(c *SingleClientConf, opts ...client.Opt
 			}
 			return DefaultClientName
 		}()}),
-		client.WithTracer(monitor_prometheus.NewClientTracerWithoutExport()),
+		client.WithTracer(monitor.NewClientTracerWithoutExport()),
 	}
 
 	options = append(options, opts...)
