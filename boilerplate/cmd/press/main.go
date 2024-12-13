@@ -9,12 +9,12 @@ import (
 	"github.com/bytedance/gopkg/util/gopool"
 	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/conf"
-	"github.com/ishumei/krpc/kclient"
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/objects"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/conf"
+	"github.com/day253/krpc/kclient"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/objects"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	"github.com/day253/krpc/zookeeper"
 	"go.uber.org/ratelimit"
 )
 

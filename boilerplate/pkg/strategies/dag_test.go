@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/boilerplate/pkg/models"
+	"github.com/day253/krpc/boilerplate/pkg/models"
 	"github.com/samber/do"
 	"github.com/stretchr/testify/assert"
 )

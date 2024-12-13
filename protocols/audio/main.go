@@ -1,8 +1,9 @@
 package main
 
 import (
-	re "github.com/ishumei/krpc/protocols/audio/kitex_gen/shumei/strategy/re/audiopredictor"
 	"log"
+
+	re "github.com/day253/krpc/protocols/audio/kitex_gen/shumei/strategy/re/audiopredictor"
 )
 
 func main() {

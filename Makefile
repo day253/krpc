@@ -13,7 +13,7 @@ compile-proto: proto
 		PATH=$(GOBIN):$$PATH && \
 		cd $$idl && \
 		find . -maxdepth 10 ! -name "prediction.thrift" -type f -exec rm -rf {} \; && \
-		kitex -module github.com/ishumei/krpc -service $$idl prediction.thrift && \
+		kitex -module github.com/day253/krpc -service $$idl prediction.thrift && \
 		cd -; \
 	done
 

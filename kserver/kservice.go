@@ -5,7 +5,7 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/logging"
+	"github.com/day253/krpc/logging"
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 	"github.com/samber/do"
 )

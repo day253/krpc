@@ -7,7 +7,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/retry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/transport"
-	"github.com/ishumei/krpc/monitor"
+	"github.com/day253/krpc/monitor"
 	"github.com/kitex-contrib/obs-opentelemetry/tracing"
 )
 

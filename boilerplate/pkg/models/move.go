@@ -3,8 +3,8 @@ package models
 import (
 	"context"
 
-	"github.com/ishumei/krpc/boilerplate/pkg/conf"
-	"github.com/ishumei/krpc/objects"
+	"github.com/day253/krpc/boilerplate/pkg/conf"
+	"github.com/day253/krpc/objects"
 )
 
 type Move struct {

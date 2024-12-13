@@ -2,9 +2,9 @@ package audio
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/protocols/audio/kitex_gen/shumei/strategy/re"
-	"github.com/ishumei/krpc/protocols/audio/kitex_gen/shumei/strategy/re/audiopredictor"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/protocols/audio/kitex_gen/shumei/strategy/re"
+	"github.com/day253/krpc/protocols/audio/kitex_gen/shumei/strategy/re/audiopredictor"
 	"github.com/samber/do"
 )
 

@@ -3,7 +3,7 @@ package kclient
 import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"github.com/samber/do"
 )
 

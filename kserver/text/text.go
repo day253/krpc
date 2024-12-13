@@ -2,9 +2,9 @@ package text
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re"
-	"github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re/textpredictor"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/protocols/text/kitex_gen/shumei/strategy/re"
+	"github.com/day253/krpc/protocols/text/kitex_gen/shumei/strategy/re/textpredictor"
 	"github.com/samber/do"
 )
 

@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/kclient"
-	"github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re"
+	"github.com/day253/krpc/kclient"
+	"github.com/day253/krpc/protocols/text/kitex_gen/shumei/strategy/re"
 )
 
 func text() {

@@ -2,9 +2,9 @@ package global
 
 import (
 	json "github.com/bytedance/sonic"
-	"github.com/ishumei/krpc/deepcopy"
-	"github.com/ishumei/krpc/objects"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	"github.com/day253/krpc/deepcopy"
+	"github.com/day253/krpc/objects"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 	"github.com/jinzhu/copier"
 	"github.com/samber/lo"
 )

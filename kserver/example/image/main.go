@@ -4,9 +4,9 @@ import (
 	"context"
 	"os"
 
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/kserver/image"
-	"github.com/ishumei/krpc/protocols/image/kitex_gen/shumei/strategy/re"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/kserver/image"
+	"github.com/day253/krpc/protocols/image/kitex_gen/shumei/strategy/re"
 	"github.com/samber/do"
 )
 

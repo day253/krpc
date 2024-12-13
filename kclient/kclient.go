@@ -6,8 +6,8 @@ import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/logging"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/logging"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/kitex-contrib/obs-opentelemetry/provider"
 	"github.com/samber/do"
 )

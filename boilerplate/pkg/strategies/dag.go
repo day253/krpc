@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/dag"
-	"github.com/ishumei/krpc/boilerplate/pkg/conf"
-	"github.com/ishumei/krpc/boilerplate/pkg/models"
+	"github.com/day253/dag"
+	"github.com/day253/krpc/boilerplate/pkg/conf"
+	"github.com/day253/krpc/boilerplate/pkg/models"
 	"github.com/jinzhu/copier"
 )
 

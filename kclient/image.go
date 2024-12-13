@@ -3,7 +3,7 @@ package kclient
 import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
-	"github.com/ishumei/krpc/protocols/image/kitex_gen/shumei/strategy/re/imagepredictor"
+	"github.com/day253/krpc/protocols/image/kitex_gen/shumei/strategy/re/imagepredictor"
 	"github.com/samber/do"
 )
 

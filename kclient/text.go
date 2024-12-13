@@ -3,7 +3,7 @@ package kclient
 import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
-	"github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re/textpredictor"
+	"github.com/day253/krpc/protocols/text/kitex_gen/shumei/strategy/re/textpredictor"
 	"github.com/samber/do"
 )
 

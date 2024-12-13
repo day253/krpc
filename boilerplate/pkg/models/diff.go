@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/ishumei/krpc/objects"
+	"github.com/day253/krpc/objects"
 	"github.com/wI2L/jsondiff"
 )
 

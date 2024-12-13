@@ -2,7 +2,7 @@ package kclient
 
 import (
 	"github.com/cloudwego/kitex/pkg/connpool"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/samber/do"
 )
 

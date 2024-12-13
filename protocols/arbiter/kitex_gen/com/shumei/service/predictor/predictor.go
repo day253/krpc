@@ -7,7 +7,7 @@ import (
 	"errors"
 	client "github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
-	service "github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	service "github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 )
 
 var errInvalidMessageType = errors.New("invalid message type for service method handler")
