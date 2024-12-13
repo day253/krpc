@@ -4,11 +4,11 @@ import (
 	"path/filepath"
 
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/boilerplate/pkg/conf"
-	"github.com/ishumei/krpc/boilerplate/pkg/models"
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/objects"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/boilerplate/pkg/conf"
+	"github.com/day253/krpc/boilerplate/pkg/models"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/objects"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/samber/do"
 )
 

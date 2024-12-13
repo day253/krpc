@@ -3,7 +3,7 @@ package global
 import (
 	"context"
 
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 )
 
 type strategyKeyType struct{}

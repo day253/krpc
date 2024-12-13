@@ -10,7 +10,7 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/registry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,4 +1,4 @@
-module github.com/ishumei/krpc
+module github.com/day253/krpc
 
 go 1.19
 
@@ -12,11 +12,11 @@ require (
 	github.com/cloudwego/gopkg v0.1.2
 	github.com/cloudwego/kitex v0.11.3
 	github.com/creasty/defaults v1.8.0
+	github.com/day253/dag v0.0.0-20241213080416-d0dbc5d98825
+	github.com/day253/lumberjack v0.0.0-20241212112149-cb6d952ed6b0
 	github.com/expr-lang/expr v1.16.9
 	github.com/go-zookeeper/zk v1.0.4
 	github.com/huandu/go-clone v1.7.2
-	github.com/ishumei/dag v0.0.0-20241018081312-9f658ddc8807
-	github.com/ishumei/lumberjack v0.0.0-20241017112125-0307cf67c51c
 	github.com/jinzhu/copier v0.4.0
 	github.com/jncornett/doublebuf v0.2.0
 	github.com/kitex-contrib/obs-opentelemetry v0.2.3

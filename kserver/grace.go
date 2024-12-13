@@ -6,7 +6,7 @@ import (
 	"syscall"
 
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/samber/do"
 )
 

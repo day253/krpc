@@ -3,7 +3,7 @@ package kclient
 import (
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/discovery"
-	"github.com/ishumei/krpc/protocols/audio/kitex_gen/shumei/strategy/re/audiopredictor"
+	"github.com/day253/krpc/protocols/audio/kitex_gen/shumei/strategy/re/audiopredictor"
 	"github.com/samber/do"
 )
 

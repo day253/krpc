@@ -6,12 +6,12 @@ import (
 
 	json "github.com/bytedance/sonic"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/boilerplate/pkg/conf"
-	"github.com/ishumei/krpc/boilerplate/pkg/global"
-	"github.com/ishumei/krpc/deepcopy"
-	"github.com/ishumei/krpc/objects"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
+	"github.com/day253/krpc/boilerplate/pkg/conf"
+	"github.com/day253/krpc/boilerplate/pkg/global"
+	"github.com/day253/krpc/deepcopy"
+	"github.com/day253/krpc/objects"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"github.com/samber/do"
 )
 

@@ -2,9 +2,9 @@ package arbiter
 
 import (
 	"github.com/cloudwego/kitex/server"
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"github.com/samber/do"
 )
 

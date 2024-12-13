@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	service "github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+
+	service "github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 )
 
 // PredictorImpl implements the last service interface defined in the IDL.

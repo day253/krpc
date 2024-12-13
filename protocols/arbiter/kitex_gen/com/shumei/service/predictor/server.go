@@ -3,7 +3,7 @@ package predictor
 
 import (
 	server "github.com/cloudwego/kitex/server"
-	service "github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	service "github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 )
 
 // NewServer creates a server.Server with the given handler and options.

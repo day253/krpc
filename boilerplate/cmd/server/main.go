@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 
-	"github.com/ishumei/krpc/boilerplate/pkg/handler"
-	"github.com/ishumei/krpc/kserver"
-	"github.com/ishumei/krpc/kserver/arbiter"
+	"github.com/day253/krpc/boilerplate/pkg/handler"
+	"github.com/day253/krpc/kserver"
+	"github.com/day253/krpc/kserver/arbiter"
 	"github.com/samber/do"
 )
 

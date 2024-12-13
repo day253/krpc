@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/ishumei/krpc/boilerplate/pkg/conf"
+	"github.com/day253/krpc/boilerplate/pkg/conf"
 )
 
 func TestSend_Run(t *testing.T) {

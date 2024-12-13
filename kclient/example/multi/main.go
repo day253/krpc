@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/ishumei/krpc/kclient"
-	"github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
+	"github.com/day253/krpc/kclient"
+	"github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 )
 
 func main() {

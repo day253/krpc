@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/cloudwego/kitex/transport"
-	"github.com/ishumei/krpc/objects"
+	"github.com/day253/krpc/objects"
 	"github.com/samber/do"
 	"github.com/samber/lo"
 )

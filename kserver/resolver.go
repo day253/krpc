@@ -2,8 +2,8 @@ package kserver
 
 import (
 	"github.com/cloudwego/kitex/pkg/discovery"
-	"github.com/ishumei/krpc/logging"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/logging"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/samber/do"
 )
 

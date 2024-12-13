@@ -3,10 +3,10 @@ package kclient
 import (
 	"github.com/cloudwego/kitex/pkg/discovery"
 	"github.com/cloudwego/kitex/pkg/klog"
-	"github.com/ishumei/krpc/conf"
-	"github.com/ishumei/krpc/logging"
-	"github.com/ishumei/krpc/objects"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/conf"
+	"github.com/day253/krpc/logging"
+	"github.com/day253/krpc/objects"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/samber/do"
 )
 

@@ -2,8 +2,8 @@ package conf
 
 import (
 	"github.com/creasty/defaults"
-	"github.com/ishumei/krpc/conf"
-	"github.com/ishumei/krpc/zookeeper"
+	"github.com/day253/krpc/conf"
+	"github.com/day253/krpc/zookeeper"
 	"github.com/samber/do"
 )
 

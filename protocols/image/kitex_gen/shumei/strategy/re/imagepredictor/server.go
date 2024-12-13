@@ -3,7 +3,7 @@ package imagepredictor
 
 import (
 	server "github.com/cloudwego/kitex/server"
-	re "github.com/ishumei/krpc/protocols/image/kitex_gen/shumei/strategy/re"
+	re "github.com/day253/krpc/protocols/image/kitex_gen/shumei/strategy/re"
 )
 
 // NewServer creates a server.Server with the given handler and options.

@@ -2,7 +2,8 @@ package main
 
 import (
 	"context"
-	re "github.com/ishumei/krpc/protocols/text/kitex_gen/shumei/strategy/re"
+
+	re "github.com/day253/krpc/protocols/text/kitex_gen/shumei/strategy/re"
 )
 
 // TextPredictorImpl implements the last service interface defined in the IDL.

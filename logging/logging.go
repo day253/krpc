@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ishumei/krpc/asyncwriter"
-	"github.com/ishumei/lumberjack"
+	"github.com/day253/krpc/asyncwriter"
+	"github.com/day253/lumberjack"
 	"github.com/samber/do"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

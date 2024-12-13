@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ishumei/krpc/bufferpool"
+	"github.com/day253/krpc/bufferpool"
 	"go.uber.org/zap/zapcore"
 )
 

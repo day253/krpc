@@ -1,8 +1,9 @@
 package main
 
 import (
-	service "github.com/ishumei/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 	"log"
+
+	service "github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service/predictor"
 )
 
 func main() {

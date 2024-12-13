@@ -1,8 +1,8 @@
 package strategies
 
 import (
-	"github.com/ishumei/krpc/boilerplate/pkg/models"
-	"github.com/ishumei/krpc/objects"
+	"github.com/day253/krpc/boilerplate/pkg/models"
+	"github.com/day253/krpc/objects"
 	"github.com/jinzhu/copier"
 )
 
