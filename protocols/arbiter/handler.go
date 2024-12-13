@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-
 	service "github.com/day253/krpc/protocols/arbiter/kitex_gen/com/shumei/service"
 )
 
